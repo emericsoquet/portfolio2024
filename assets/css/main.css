@@ -1,5 +1,7 @@
 @import './core/reset.css';
 @import './core/base.css';
+@import './core/fonts.css';
+@import './core/themes.css';
 
 @import './layouts/header.css';
 @import './layouts/footer.css';

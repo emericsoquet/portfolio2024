@@ -1,6 +1,6 @@
 <template>
     <div class="header__logo">
-        <figure class="header__icon">
+        <figure class="header__icon w-14">
             <img    src="~/assets/media/logo/emeric-soquet.webp" 
                     :alt="altLogo"
                     class="rounded aspect-square">

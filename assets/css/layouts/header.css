@@ -1,7 +1,3 @@
 .header {
     @apply uppercase;
 }
-
-.header__icon {
-    width: 75px;
-}

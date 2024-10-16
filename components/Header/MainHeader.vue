@@ -1,6 +1,6 @@
 <template>
-    <header class="header border-b-1">
-        <div class="container grid grid-flow-col justify-between items-center py-4">
+    <header class="header border-bottom">
+        <div class="container grid grid-flow-col justify-between items-center py-7">
             <HeaderLogo class="flex items-center"></HeaderLogo>
             <HeaderNavigation class="flex"></HeaderNavigation>
         </div>

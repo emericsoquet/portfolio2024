@@ -1,3 +1,27 @@
 body {
+    
     @apply font-body;
+    position: relative;
+    min-height: 100vh;
+    color:white;
+
+    &::before, &::after {
+        content: '';
+        display: block;
+        position: absolute;
+        inset: 0;
+    }
+    
+    &::before {
+        z-index: -2;
+        background-image: url('/assets/media/bg/bg.webp');
+        opacity: .05;
+    }
+
+    &::after {
+        z-index: -1;
+        background-color: #1D1D1D;
+        opacity: .1;
+    }
+
 }
