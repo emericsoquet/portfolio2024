@@ -5,7 +5,7 @@
                     :alt="altLogo"
                     class="rounded aspect-square">
         </figure>
-        <figcaption class="ml-6">Emeric</figcaption>
+        <figcaption class="ml-6 font-heading">Emeric</figcaption>
     </div>
 </template>
 

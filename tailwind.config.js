@@ -11,6 +11,11 @@ export default {
     theme: {
         container: {
             center: true
+        },
+        fontFamily: {
+            'body': ['Inter', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],
+            'heading': ['Syne', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],
+            'sub': ['"Clash Grotesk Variable"', 'Inter', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif']
         }
     },
     screens: {

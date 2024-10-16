@@ -1,0 +1,6 @@
+@layer base {
+    @font-face {
+        font-family: 'Space Grotesk Variable';
+        src: url(/assets/fonts/clash-grotesk/ClashGrotesk-Variable.ttf) format('ttf');
+    }
+}
