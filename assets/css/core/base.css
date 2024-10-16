@@ -1,5 +1,5 @@
 body {
-    
+
     @apply font-body;
     position: relative;
     min-height: 100vh;
@@ -24,4 +24,13 @@ body {
         opacity: .1;
     }
 
+}
+
+figure {
+    position: relative;
+    overflow: hidden;
+    & > img {
+        filter: grayscale(1);
+        display: block;
+    }
 }

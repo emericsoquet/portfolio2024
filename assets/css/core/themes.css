@@ -4,4 +4,13 @@
     background: -webkit-linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
     background: linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8e7ab9",endColorstr="#35529e",GradientType=1);
+
+    figure::after {
+        display: block;
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: #4F2E8C;
+        opacity: .4;
+    }
 }

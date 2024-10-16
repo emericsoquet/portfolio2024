@@ -1,9 +1,9 @@
 <template>
     <div class="header__logo">
-        <figure class="header__icon w-14">
+        <figure class="header__icon w-14 md:w-16 rounded">
             <img    src="~/assets/media/logo/emeric-soquet.webp" 
                     :alt="altLogo"
-                    class="rounded aspect-square">
+                    class="aspect-square">
         </figure>
         <figcaption class="ml-6 font-heading">Emeric</figcaption>
     </div>
