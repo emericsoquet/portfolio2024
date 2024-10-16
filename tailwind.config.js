@@ -9,8 +9,23 @@ export default {
         "./error.vue"
     ],
     theme: {
-        extend: {},
+        container: {
+            center: true
+        }
     },
-    plugins: [],
+    screens: {
+        'mb': '420px',
+        'xs': '576px'
+    },
+    plugins: [
+        function ({addUtilities}) {
+            addUtilities({
+                '.grid-default': {
+                    'grid-template-columns': 'repeat(12, minmax(0, 1fr))',
+                    'gap': '24px'
+                }
+            })
+        }
+    ],
 }
 
