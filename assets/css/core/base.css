@@ -4,6 +4,7 @@ body {
     position: relative;
     min-height: 100vh;
     color:white;
+    font-size: 16px;
 
     &::before, &::after {
         content: '';
@@ -24,6 +25,10 @@ body {
         opacity: .1;
     }
 
+}
+
+.container {
+    @apply px-3;
 }
 
 figure {

@@ -10,7 +10,12 @@ export default {
     ],
     theme: {
         container: {
-            center: true
+            center: true,
+            screens: {
+                ...require('tailwindcss/defaultTheme').screens,
+                'mb': '420px',
+                'xs': '576px'
+            },
         },
         fontFamily: {
             'body': ['Inter', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],
@@ -20,11 +25,7 @@ export default {
         colors: {
             'title': '#f2f2f2',
             'border': '#eaeaea'
-        }
-    },
-    screens: {
-        'mb': '420px',
-        'xs': '576px'
+        },
     },
     plugins: [
         function ({addUtilities, theme}) {

@@ -1,8 +1,8 @@
 <template>
     <header class="header border-bottom">
         <div class="container grid grid-flow-col justify-between items-center py-7">
-            <HeaderLogo class="flex items-center"></HeaderLogo>
-            <HeaderNavigation class="flex"></HeaderNavigation>
+            <HeaderLogo></HeaderLogo>
+            <HeaderNavigation></HeaderNavigation>
         </div>
     </header>
 </template>
