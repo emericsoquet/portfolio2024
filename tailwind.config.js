@@ -11,11 +11,11 @@ export default {
     theme: {
         container: {
             center: true,
-            screens: {
-                ...require('tailwindcss/defaultTheme').screens,
-                'mb': '420px',
-                'xs': '576px'
-            },
+        },
+        extend: {
+            ...require('tailwindcss/defaultTheme').screens,
+            'mb': '420px',
+            'xs': '576px'
         },
         fontFamily: {
             'body': ['Inter', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],

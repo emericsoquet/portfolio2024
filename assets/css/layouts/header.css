@@ -1,3 +1,50 @@
 .header {
     @apply uppercase;
+    position: relative;
+}
+
+.nav__toggle {
+    span {
+        @apply bg-border;
+        width: 25px;
+        height: 1px;
+        display: block;
+    }
+}
+
+.nav__list {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all .3s;
+}
+
+.header__nav.is-open {
+    .nav__list {
+        @apply py-5;
+        max-height: 300px;
+    }
+    .nav__toggle {
+        span:nth-child(2) {
+            opacity: 0;
+        }
+
+        span:first-child {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+        span:last-child {
+            transform: rotate(-45deg) translate(4px, -4px);
+        }
+    }
+}
+
+@media (min-width: 768px) {
+    .nav__list {
+        max-height: none;
+        overflow: visible;
+        position: static;
+    }
 }
