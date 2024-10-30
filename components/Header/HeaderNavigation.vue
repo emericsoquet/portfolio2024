@@ -1,6 +1,9 @@
 <template>
+
+    <!-- is-open slides the menu when beneath md: 768px -->
     <nav :class="`header__nav flex items-center ${ isMenuOpen ? 'is-open' : '' }`">
 
+        <!-- listening to toggle-menu event : toggleMenu switch the menu between open or close -->
         <NavigationToggle :isMenuOpen="isMenuOpen" @toggle-menu="toggleMenu" />
 
         <div class="nav__list flex flex-col border-bottom md:border-none" ref="navList">

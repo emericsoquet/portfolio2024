@@ -1,5 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Syne:wght@400..800&display=swap');
 
+/* custom font, not in google fonts */
 @layer base {
     @font-face {
         font-family: 'Space Grotesk Variable';

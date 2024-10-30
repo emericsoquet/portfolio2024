@@ -2,8 +2,8 @@ body {
 
     @apply font-body;
     position: relative;
-    min-height: 100vh;
-    color:white;
+    min-height: 100vh; /* to remove */
+    @apply text-base;
     font-size: 16px;
 
     &::before, &::after {
@@ -13,12 +13,14 @@ body {
         inset: 0;
     }
     
+    /* grainy texture */
     &::before {
         z-index: -2;
         background-image: url('/assets/media/bg/bg.webp');
         opacity: .05;
     }
 
+    /* default color background */
     &::after {
         z-index: -1;
         background-color: #1D1D1D;

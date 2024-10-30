@@ -2,7 +2,10 @@
 @import './core/base.css';
 @import './core/fonts.css';
 @import './core/themes.css';
+@import './core/typography.css';
 
 @import './layouts/header.css';
 @import './layouts/footer.css';
+
+@import './layouts/hero.css';
 

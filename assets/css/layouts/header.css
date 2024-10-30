@@ -1,6 +1,9 @@
 .header {
     @apply uppercase;
     position: relative;
+    height: 120px;
+    display: flex;
+    align-items: center;
 }
 
 .nav__toggle {

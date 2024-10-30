@@ -12,7 +12,7 @@ export default {
         container: {
             center: true,
         },
-        extend: {
+        screens: {
             ...require('tailwindcss/defaultTheme').screens,
             'mb': '420px',
             'xs': '576px'
@@ -24,16 +24,21 @@ export default {
         },
         colors: {
             'title': '#f2f2f2',
-            'border': '#eaeaea'
+            'border': '#eaeaea',
+            'base': '#f4f4f5',
         },
     },
     plugins: [
         function ({addUtilities, theme}) {
             addUtilities({
+
+                // main grid for project
                 '.grid-default': {
                     'grid-template-columns': 'repeat(12, minmax(0, 1fr))',
                     'gap': '24px'
                 },
+
+                // call quickly a border by a class
                 '.border-top': {
                     borderTop: `1px solid ${theme('colors.border')}`
                 },

@@ -10,7 +10,5 @@
 </template>
 
 <script setup>
-
 const altLogo = ref('Photo d\'Emeric Soquet');
-
 </script>

@@ -17,6 +17,7 @@ const props = defineProps({
     }
 })
 
+// emit toggle-menu to parent when clicked
 const emit = defineEmits(['toggle-menu']);
 const toggleMenu = () => {
     emit('toggle-menu');
