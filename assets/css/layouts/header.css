@@ -1,9 +1,9 @@
 .header {
     @apply uppercase;
     position: relative;
-    height: 120px;
     display: flex;
     align-items: center;
+    flex-direction: column;
 }
 
 .nav__toggle {
@@ -16,11 +16,10 @@
 }
 
 .nav__list {
-    position: absolute;
-    top: 100%;
     left: 0;
     right: 0;
     max-height: 0;
+    width: 100%;
     overflow: hidden;
     transition: all .3s;
 }
