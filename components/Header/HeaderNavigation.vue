@@ -1,14 +1,12 @@
 <template>
 
     <!-- is-open slides the menu when beneath md: 768px -->
-    <nav :class="`header__nav flex items-center ${ isMenuOpen ? 'is-open' : '' }`">
+    <nav :class="`header__nav flex items-center`">
 
-        <!-- listening to toggle-menu event : toggleMenu switch the menu between open or close -->
-        <NavigationToggle :isMenuOpen="isMenuOpen" @toggle-menu="toggleMenu" />
+        <NavigationToggle />
 
         <Teleport to="#mainHeader" v-if="isMounted">
-            <div    class="nav__list flex flex-col border-bottom md:border-none" ref="navList"
-                    >
+            <div class="nav__list flex flex-col border-bottom md:border-none" ref="navList" >
                 <ul class="flex flex-col md:flex-row">
                     <li v-for="(link, i) in navLinks"
                         :key="i"
@@ -30,15 +28,10 @@
 
 <script setup>
 
-const isMenuOpen = ref(false);
 const isMounted  = ref(false);
 onMounted(() => {
     isMounted.value = true;
-})
-
-const toggleMenu = () => {
-    isMenuOpen.value = !isMenuOpen.value;
-}
+});
 
 const navLinks = reactive([
     { label: 'About me', url: '#'},

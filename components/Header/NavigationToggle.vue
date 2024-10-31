@@ -9,18 +9,8 @@
 </template>
 
 <script setup>
+import { useHeaderStore } from '~/stores/headerStore';
 
-const props = defineProps({
-    isMenuOpen: {
-        type: Boolean,
-        required: true
-    }
-})
-
-// emit toggle-menu to parent when clicked
-const emit = defineEmits(['toggle-menu']);
-const toggleMenu = () => {
-    emit('toggle-menu');
-}
-
+const headerStore = useHeaderStore();
+const toggleMenu  = headerStore.toggleMenu;
 </script>

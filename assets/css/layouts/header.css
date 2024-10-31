@@ -22,12 +22,33 @@
     width: 100%;
     overflow: hidden;
     transition: all .3s;
+    &::before {
+        content: '';
+        display: block;
+        width: 100%;
+        @apply bg-border;
+        position: absolute;
+        left: 0;
+        right: 0;
+        top: 0;
+        height: 1px;
+        transform: scaleX(0);
+        transform-origin: left;
+        transition: all 0s;
+    }
 }
 
-.header__nav.is-open {
+.header.is-open {
+    @apply border-border;
     .nav__list {
         @apply py-5;
         max-height: 300px;
+        position: relative;
+        &::before {
+            opacity: 1;
+            transform: scaleX(1);
+            transition: all 0.6s;
+        }
     }
     .nav__toggle {
         span:nth-child(2) {
