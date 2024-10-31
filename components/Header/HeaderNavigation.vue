@@ -5,21 +5,13 @@
 
         <NavigationToggle />
 
-        <Teleport to="#mainHeader" v-if="isMounted">
-            <div class="nav__list flex flex-col border-bottom md:border-none" ref="navList" >
-                <ul class="flex flex-col md:flex-row">
-                    <li v-for="(link, i) in navLinks"
-                        :key="i"
-                        class="nav__item">
-                            <NuxtLink   :to="link.url"
-                                        class="px-2 py-1 block mx-2 text-lg font-heading">
-                                {{ link.label }}
-                            </NuxtLink>
-                    </li>
-                </ul>
-            
-            </div>
+        <Teleport to="#mainHeader" v-if="isMounted && shouldTeleport">
+            <NavigationList></NavigationList>
         </Teleport>
+
+        <template v-else>
+            <NavigationList></NavigationList>
+        </template>
 
         <button class="nav__item font-bold ml-5 sm:ml-7 font-sub" to="">{{ language }}</button>
 
@@ -28,18 +20,23 @@
 
 <script setup>
 
+const language = ref('FR');
+
+const shouldTeleport = ref(false);
+const checkScreenSize = () => {
+    shouldTeleport.value = window.innerWidth <= 768;
+}
+
 const isMounted  = ref(false);
 onMounted(() => {
     isMounted.value = true;
+    checkScreenSize();
+    window.addEventListener('resize', checkScreenSize);
 });
 
-const navLinks = reactive([
-    { label: 'About me', url: '#'},
-    { label: 'Works', url: '#'},
-    { label: 'Contact', url: '#'},
-]);
-
-const language = ref('FR');
+onUnmounted(() => {
+    window.removeEventListener('resize', checkScreenSize);
+})
 
 </script>
 

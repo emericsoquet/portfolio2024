@@ -69,5 +69,8 @@
         max-height: none;
         overflow: visible;
         position: static;
+        &::before {
+            display: none;
+        }
     }
 }
