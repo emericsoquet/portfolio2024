@@ -15,17 +15,7 @@
                     Open for new opportunities
                 </p>
     
-                <div class="hero__networks pl-5 pr-4 py-3 rounded-md w-max flex items-center">
-                    <p class="font-heading font-semibold tracking-wider mr-10 md:text-lg">Follow me</p>
-                    <div class="hero__networks-list flex gap-2">
-                        <a  v-for="(network, i) in networks"
-                            :key="i"
-                            :class="`hero__network cursor-pointer bg-base bg-opacity-20 aspect-square w-8 rounded-md flex items-center justify-center ${ network.label === 'GitHub' ? 'p-1.5' : 'p-2' }`"
-                            :href="network.link">
-                            <img :src="network.img" :alt="network.label" class="cursor-pointer">
-                        </a>
-                    </div>
-                </div>
+                <NetworksList extraClasses="hero__networks"></NetworksList>
     
             </div>
         </div>
@@ -34,12 +24,5 @@
 </template>
 
 <script setup>
-import LinkedInLogo from '~/assets/media/logo/linkedin-logo.svg';
-import GitHubLogo   from '~/assets/media/logo/github-logo.svg';
 
-
-const networks = reactive([
-    { label: 'LinkedIn', link: 'https://www.linkedin.com/in/emeric-soquet/', img: LinkedInLogo },
-    { label: 'GitHub', link: 'https://github.com/emericsoquet', img: GitHubLogo }
-])
 </script>

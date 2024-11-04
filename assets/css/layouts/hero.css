@@ -79,4 +79,5 @@
 .hero__networks {
     border: 1px solid white;
     @apply border-border;
+    @apply rounded-md;
 }
