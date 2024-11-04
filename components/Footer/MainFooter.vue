@@ -23,6 +23,7 @@ let observer;
 onMounted( () => {
 
     const topArrow = footerArrow.value.topArrow;
+    console.log(topArrow);
 
     const handleScroll = () => {
         const footerTop = footer.value.getBoundingClientRect().top;

@@ -1,4 +1,9 @@
 .btn-fixed {
     bottom: 20px !important;
     position: fixed !important;
+    transition: all .3s;
+    &.is-top {
+        opacity: 0;
+        visibility: hidden;
+    }
 }
