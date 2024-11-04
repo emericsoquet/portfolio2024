@@ -18,13 +18,13 @@
 <script setup>
 const footer = ref(null);
 const footerArrow = ref(null);
-let observer;
 
 onMounted( () => {
 
+    // get topArrow from child component via refs : FooterArrow
     const topArrow = footerArrow.value.topArrow;
-    console.log(topArrow);
 
+    // when the scroll is above footer, the arrow will be fixed
     const handleScroll = () => {
         const footerTop = footer.value.getBoundingClientRect().top;
         const windowHeight = window.innerHeight;
@@ -35,8 +35,13 @@ onMounted( () => {
             topArrow.classList.remove('btn-fixed');
     }
 
-    window.addEventListener('scroll', handleScroll);
+    // check scroll at launch but also when user is scrolling the page
     handleScroll();
+    window.addEventListener('scroll', handleScroll);
+
+    onUnmounted( () => {
+        window.removeEventListener('scroll', handleScroll);
+    })
 
 });
 </script>

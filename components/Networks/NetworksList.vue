@@ -1,3 +1,5 @@
+<!-- is used for differents components but classes may be different so props are retrieved -->
+
 <template>
     <div :class="`${extraClasses} networks pl-5 pr-4 py-3 w-max flex items-center`">
         <p class="font-heading font-semibold tracking-wider mr-10 md:text-lg">Follow me</p>
@@ -27,4 +29,5 @@ const networks = reactive([
     { label: 'LinkedIn', link: 'https://www.linkedin.com/in/emeric-soquet/', img: LinkedInLogo },
     { label: 'GitHub', link: 'https://github.com/emericsoquet', img: GitHubLogo }
 ]);
+
 </script>

@@ -12,9 +12,11 @@ import { useHeaderStore } from '~/stores/headerStore';
 
 const header = ref(null);
 
+// an action is used on NavigationToggle and will change the state : isMenuOpen is toggle
 const headerStore = useHeaderStore();
 const isMenuOpen =  computed( () => headerStore.isMenuOpen );
 
+// detects if header is in the screen part and change the state of isHeaderVisible via an IntersectionObserver
 onMounted( () => {
     const obs = new IntersectionObserver(
         (entries) => {
@@ -26,5 +28,6 @@ onMounted( () => {
 
     if(header.value)
         obs.observe(header.value);
-})
+});
+
 </script>

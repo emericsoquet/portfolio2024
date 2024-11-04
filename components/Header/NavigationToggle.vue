@@ -12,5 +12,6 @@
 import { useHeaderStore } from '~/stores/headerStore';
 
 const headerStore = useHeaderStore();
+// when clicked on the button, the is-open status is toggle on mobile
 const toggleMenu  = headerStore.toggleMenu;
 </script>
