@@ -11,6 +11,9 @@ export default {
     theme: {
         container: {
             center: true,
+            padding: {
+                DEFAULT: '12px',
+            }
         },
         screens: {
             ...require('tailwindcss/defaultTheme').screens,

@@ -39,10 +39,6 @@ body {
 
 }
 
-.container {
-    @apply px-3;
-}
-
 figure {
     position: relative;
     overflow: hidden;
