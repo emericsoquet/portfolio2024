@@ -3,7 +3,7 @@
         <p class="uppercase text-right text-xs mb-2 mr-2 md:mr-0 md:mb-5 md:text-sm">Pick your favorite gem</p>
 
         <div class="palette__list md:flex">
-            <button    :class="`palette__item flex w-full items-center px-4 py-5 md:flex-1 md:w-auto border-bottom ${ i === 0 ? 'border-top md:border-left' : '' } md:border-top md:border-right ${generalStore.theme === theme.name ? 'is-active' : ''}`" 
+            <button    :class="`palette__item flex w-full items-center px-4 py-5 md:flex-1 md:w-auto border-bottom ${ i === 0 ? 'border-top md:border-left' : '' } md:border-top md:border-right ${generalStore.theme === theme.name ? 'is-active' : ''}md:`" 
                     v-for="(theme, i) in palette" 
                     :key="i"
                     @click="changeTheme(theme.name)">
