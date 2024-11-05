@@ -5,6 +5,7 @@ body {
     min-height: 100vh; /* to remove */
     @apply text-base;
     font-size: 16px;
+    transition: background 1s;
 
     &::before, &::after {
         content: '';
@@ -25,6 +26,15 @@ body {
         z-index: -1;
         background-color: #1D1D1D;
         opacity: .1;
+    }
+
+    figure::after {
+        display: block;
+        content: '';
+        position: absolute;
+        inset: 0;
+        background: rgb(46, 46, 46);
+        opacity: .4;
     }
 
 }
