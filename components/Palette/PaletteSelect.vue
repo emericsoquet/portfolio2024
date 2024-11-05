@@ -3,7 +3,7 @@
         <p class="uppercase text-right text-xs mb-2 mr-2">Pick your favorite gem</p>
 
         <div class="palette__list">
-            <button    :class="`palette__item flex w-full items-center px-4 py-5 border-bottom ${ i === 0 ? 'border-top' : '' }`" 
+            <button    :class="`palette__item flex w-full items-center px-4 py-5 border-bottom ${ i === 0 ? 'border-top' : '' } ${generalStore.theme === theme.name ? 'is-active' : ''}`" 
                     v-for="(theme, i) in palette" 
                     :key="i"
                     @click="changeTheme(theme.name)">

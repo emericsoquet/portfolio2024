@@ -7,7 +7,7 @@
     background: linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#8e7ab9",endColorstr="#35529e",GradientType=1);
 
-    figure::after {
+    figure::after, .palette__item::before {
         background: #4F2E8C;
     }
 }
@@ -19,7 +19,7 @@
     background: linear-gradient(90deg, rgba(52,201,104,1) 0%, rgba(69,186,61,1) 25%, rgba(101,207,62,1) 49%, rgba(114,193,41,1) 84%, rgba(136,186,49,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#34c968",endColorstr="#88ba31",GradientType=1);
 
-    figure::after {
+    figure::after, .palette__item::before {
         background: #3FC16B;
     }
 }
@@ -31,7 +31,7 @@
     background: linear-gradient(90deg, rgba(215,78,108,1) 0%, rgba(229,124,131,1) 28%, rgba(223,106,124,1) 50%, rgba(203,89,117,1) 75%, rgba(140,57,58,1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#d74e6c",endColorstr="#8c393a",GradientType=1);
 
-    figure::after {
+    figure::after, .palette__item::before {
         background: #B84042;
     }
 }

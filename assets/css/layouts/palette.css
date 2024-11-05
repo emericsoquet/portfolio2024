@@ -1,3 +1,25 @@
-.palette {
-    min-height: 1000px;
+.palette__item {
+    position: relative;
+    z-index: 0;
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        inset: 0;
+        z-index: -1;
+        opacity: 0;
+        transition: opacity .3s ease-out;
+    }
+}
+
+.palette__item:hover {
+    &::before {
+        opacity: 1;
+    }
+}
+
+.palette__item.is-active {
+    &::before {
+        opacity: 0.4;
+    }
 }
