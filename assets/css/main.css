@@ -5,6 +5,7 @@
 @import './core/typography.css';
 
 @import './components/buttons.css';
+@import './components/titles.css';
 
 @import './layouts/header.css';
 @import './layouts/footer.css';

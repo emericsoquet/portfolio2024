@@ -1,9 +1,15 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
 
-/* custom font, not in google fonts */
+/* custom fonts */
 @layer base {
     @font-face {
+        /* not in google fonts */
         font-family: 'Space Grotesk Variable';
         src: url(/assets/fonts/clash-grotesk/ClashGrotesk-Variable.ttf) format('ttf');
+    }
+    @font-face {
+        /* must have the file for text-stroke css property instead of css import from google fonts */
+        font-family: 'Inter';
+        src: url(/assets/fonts/inter/InterVariable.ttf) format('ttf');
     }
 }

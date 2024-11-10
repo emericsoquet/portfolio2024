@@ -1,0 +1,35 @@
+.title--sliding {
+    top: -1px;
+    padding: 30px 0;
+    position: relative;
+
+    .title__wrapper {
+        display: flex;
+    }
+
+    .title {
+        @apply mx-3;
+    }
+}
+
+
+@keyframes RightToLeft {
+    from {
+        transform: translateX(0);
+    } to {
+        transform: translateX(-100%);
+    }
+}
+
+.title {
+    font-size: clamp(50px, 7.5vw, 105px);
+    text-transform: uppercase;
+    font-weight: 700;
+    @apply font-body;
+    &:nth-child(odd) {
+        color: transparent;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: white;
+        @apply font-body;
+    }
+}
