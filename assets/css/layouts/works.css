@@ -1,0 +1,41 @@
+.works__list {
+    display: flex;
+    /* margin-right: 24px; */
+}
+
+.work {
+
+    article {
+        position: relative; 
+    }
+
+    article::before, img {
+        @apply rounded-lg;
+        position: absolute;
+        inset: 0;
+    }
+
+    article::before {
+        content: '';
+        opacity: .5;
+        z-index: -1;
+    }
+
+    img {
+        z-index: -2;
+        aspect-ratio: 16/9;
+        object-fit: cover;
+        filter: grayscale(100%);
+    }
+
+    h3 {
+        transition: all .3s;
+        letter-spacing: 1px;
+        @apply px-3;
+    }
+    &:hover {
+        h3 {
+            @apply opacity-100;
+        }
+    }
+}

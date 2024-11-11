@@ -6,9 +6,8 @@
     .title__wrapper {
         display: flex;
     }
-
     .title {
-        @apply mx-3;
+        @apply px-3;
     }
 }
 

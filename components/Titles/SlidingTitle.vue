@@ -2,7 +2,7 @@
     <div class="title__container title--sliding border-top border-bottom relative">
         <div class="title__wrapper" ref="titleSlider">
                 <h2 class="title">{{ title }}</h2>
-                <span class="title" v-for="n in 10" :key="n">{{ title }}</span>
+                <span class="title" v-for="n in 20" :key="n">{{ title }}</span>
         </div>
     </div>
 </template>

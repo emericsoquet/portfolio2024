@@ -1,0 +1,7 @@
+.work article {
+    height: 200px;
+}
+
+.work {
+    @apply px-3;
+}

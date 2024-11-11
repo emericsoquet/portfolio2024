@@ -2,6 +2,6 @@
     <main>
         <HeroIntro></HeroIntro>
         <PaletteSelect></PaletteSelect>
-        <ProfessionalWorks></ProfessionalWorks>
+        <WorksSection></WorksSection>
     </main>
 </template>
