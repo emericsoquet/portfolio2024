@@ -2,6 +2,8 @@
     <main>
         <HeroIntro></HeroIntro>
         <PaletteSelect></PaletteSelect>
+        <AboutSection></AboutSection>
+        <SkillsList></SkillsList>
         <WorksSection></WorksSection>
         <ContactSection></ContactSection>
     </main>
