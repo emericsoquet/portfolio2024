@@ -8,6 +8,15 @@
     }
     .title {
         @apply px-3;
+        @apply font-body;
+        @apply leading-none;
+        text-transform: uppercase;
+        &:nth-child(odd) {
+            color: transparent;
+            -webkit-text-stroke-width: 1px;
+            -webkit-text-stroke-color: white;
+            @apply font-body;
+        }
     }
 }
 
@@ -22,13 +31,20 @@
 
 .title {
     font-size: clamp(50px, 7.5vw, 105px);
-    text-transform: uppercase;
     font-weight: 700;
-    @apply font-body;
-    &:nth-child(odd) {
-        color: transparent;
-        -webkit-text-stroke-width: 1px;
-        -webkit-text-stroke-color: white;
-        @apply font-body;
+}
+
+h2 {
+
+    @apply leading-none;
+    
+    span {
+        display: block;
+    }
+
+    .subtitle {
+        @apply font-thin;
+        font-size: clamp(20px, 3vw, 40px);
+        @apply pl-1;
     }
 }
