@@ -1,7 +1,6 @@
 <template>
     <main>
         <HeroIntro></HeroIntro>
-        <ContactSection></ContactSection>
         <PaletteSelect></PaletteSelect>
         <WorksSection></WorksSection>
         <ContactSection></ContactSection>
