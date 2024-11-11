@@ -2,7 +2,7 @@
 
     <section class="about">
 
-        <div class="about__grid grid container">
+        <div class="about__grid grid md:container">
             <AboutMain></AboutMain>
         </div>
         
