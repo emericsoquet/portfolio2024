@@ -1,11 +1,9 @@
 <template>
 
-    <section class="about">
-
-        <div class="about__grid grid md:container">
+    <section class="about flex">
+        <div class="about__grid container">
             <AboutMain></AboutMain>
         </div>
-        
     </section>
 
 </template>
