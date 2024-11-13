@@ -53,9 +53,19 @@
 
     &:first-child {
         right: 100%;
+        @media (min-width: 1800px) {
+            span {
+                align-items: flex-end;
+            }
+        }
     }
     &:last-child {
         left: 100%;
+        @media (min-width: 1800px) {
+            span {
+                align-items: flex-start;
+            }
+        }
     }
 }
 
