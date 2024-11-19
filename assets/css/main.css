@@ -6,6 +6,7 @@
 
 @import './components/buttons.css';
 @import './components/titles.css';
+@import './components/inputs.css';
 
 @import './layouts/header.css';
 @import './layouts/footer.css';
@@ -13,7 +14,6 @@
 @import './layouts/hero.css';
 @import './layouts/palette.css';
 @import './layouts/about.css';
-@import './layouts/skills.css';
 @import './layouts/works.css';
 @import './layouts/contact.css';
 

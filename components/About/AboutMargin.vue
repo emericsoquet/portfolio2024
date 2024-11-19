@@ -33,8 +33,7 @@ onMounted( async () => {
             trigger: container.value,
             start: 'top bottom',
             end: 'bottom top',
-            markers: true,
-            scrub: true,
+            scrub: 5,
         }
     })
     .fromTo(text.value, {
@@ -44,7 +43,6 @@ onMounted( async () => {
         yPercent: speed * direction,
         ease: 'none'
     }); 
-
 
 })
 

@@ -1,0 +1,51 @@
+input, textarea {
+    appearance: none;
+    font-size: 1em;
+    background: none;
+}
+
+button[type=submit] {
+    position: relative;
+
+    &::before, &::after {
+        content: '';
+        position: absolute;
+        display: none;
+        @media (min-width: 768px) {
+            display: block;
+        }
+    }
+
+    &::before {
+        width: 100%;
+        top: 0;
+        bottom: 0;
+        left: -1.5px;
+        @apply border-left;
+        @apply border-bottom;
+        @apply border-right;
+    }
+
+    &::after {
+        width: 100vw;
+        bottom: 0;
+        height: 1px;
+        @apply bg-border;
+    }
+}
+
+.input-group {
+    position: relative;
+    &::before {
+        content: '';
+        position: absolute;
+        display: none;
+        height: 1px;
+        @apply bg-border;
+        left: -100vw;
+        right: 25%;
+        @media (min-width: 768px) {
+            display: block;
+        }
+    }
+}

@@ -7,6 +7,9 @@
                 <span class="subtitle">We may create amazing things together</span>
             </h2>
         </div>
+
+        <ContactForm></ContactForm>
+
     </section>
 </template>
 
