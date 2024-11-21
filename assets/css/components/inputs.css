@@ -49,3 +49,22 @@ button[type=submit] {
         }
     }
 }
+
+.input-error {
+    position: relative;
+    &::after, &::before {
+        content: '';
+        position: absolute;
+        display: block;
+        height: 2px;
+        @apply bg-error;
+        left: 0;
+        right: 0;
+        bottom: -1px;
+        z-index: 1;
+    }
+    &::before {
+        bottom: auto;
+        top: -1px;
+    }
+}

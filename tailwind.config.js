@@ -29,6 +29,7 @@ export default {
             'title': '#f2f2f2',
             'border': '#eaeaea',
             'base': '#f4f4f5',
+            'error': '#f01d24'
         },
     },
     plugins: [
