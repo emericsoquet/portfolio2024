@@ -29,8 +29,6 @@
                 {{ formMessage ? formMessage : 'All these fields are required before sending the form' }}
             </div>
         </fieldset>
-
-        {{ form }}
         
     </form>
 </template>
@@ -45,11 +43,11 @@ const isFormValid   = ref(true);
 
 // list of fields present in the form
 const fields = [
-    { name: 'surname', label: 'Surname', rules: [validators.charsTest(), validators.requiredTest()] },
-    { name: 'firstName', label: 'First Name', rules: [validators.charsTest(), validators.requiredTest()] },
-    { name: 'email', label: 'Mail address', type: 'email', rules: [validators.emailTest(), validators.requiredTest()] },
-    { name: 'object', label: 'Object', rules: [validators.minTest(3), validators.requiredTest()] },
-    { name: 'message', label: 'Message', type: 'textarea', rules: [validators.minTest(20), validators.requiredTest()] }
+    { name: 'surname', label: 'Surname', rules: [validators.requiredTest(), validators.charsTest()] },
+    { name: 'firstName', label: 'First Name', rules: [validators.requiredTest(), validators.charsTest()] },
+    { name: 'email', label: 'Mail address', type: 'email', rules: [validators.requiredTest(), validators.emailTest()] },
+    { name: 'object', label: 'Object', rules: [validators.requiredTest(), validators.minTest(3)] },
+    { name: 'message', label: 'Message', type: 'textarea', rules: [ validators.requiredTest(), validators.minTest(20)] }
 ];
 
 // list of associations between every field name and a value (got from v-model) which is empty at the beginning
@@ -83,8 +81,6 @@ const handleForm = () => {
     fields.forEach( field => {
         const fieldError = validateField(field.name);
         errors[field.name] = fieldError;
-
-        console.log(errors);
     });
 
     if( Object.values(errors).some(fieldErrors => fieldErrors.length > 0) ) {
