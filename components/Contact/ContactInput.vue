@@ -9,21 +9,21 @@
             {{ label }}
         </label>
 
-        <span :class="`${error && 'input-error'}`">
+        <span :class="`${error.length > 0 && 'input-error'}`">
             <template v-if="type === 'textarea'">
-                <Field  :as="type"
+                <textarea
                         :name="name"
                         :id="name"
-                        :validate-on-blur="true"
-                        :class="`h-52 w-full block px-5 py-4 bg-border/20 md:px-8 md:border-left font-body text-lg resize-none ${error && 'text-error'}`" 
+                        v-model="model"
+                        :class="`h-52 w-full block px-5 py-4 bg-border/20 md:px-8 md:border-left font-body text-lg resize-none ${error.length > 0 && 'text-error'}`" 
                 />
             </template>
             <template v-else>
-                <Field  :type="type" 
+                <input  :type="type" 
                         :name="name"
                         :id="name"
-                        :validate-on-blur="true"
-                        :class="`h-12 w-full px-5 bg-border/20 md:h-full md:px-8 md:border-left font-body text-lg ${error && 'text-error'}`"
+                        v-model="model"
+                        :class="`h-12 w-full px-5 bg-border/20 md:h-full md:px-8 md:border-left font-body text-lg ${error.length > 0 && 'text-error'}`"
                 />
             </template>
         </span>
@@ -31,15 +31,18 @@
         <div    :class="`border-top
                 md:border-t-0 md:border-left md:border-right
                 flex items-center`">
-            <ErrorMessage :name="name" class="px-5 py-3 border-bottom block w-full md:border-0 text-sm" />
+            <span class="px-5 py-3 border-bottom block w-full md:border-0 text-sm">{{ error }}</span>
         </div>
+
+        <!-- ${error && 'input-error'} -->
+        <!-- ${error && 'text-error'} -->
 
 
     </div>
+
 </template>
 
 <script setup>
-import { Field, ErrorMessage, useFieldError } from 'vee-validate';
 
 const props = defineProps({
     label: {
@@ -52,10 +55,13 @@ const props = defineProps({
     },
     type: {
         type: String,
-        required: true
+        default: 'text',
+    },
+    error: {
+        type: Object
     }
 });
 
-const error = useFieldError(props.name);
+const model = defineModel();
 
 </script>

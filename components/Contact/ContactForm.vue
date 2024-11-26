@@ -1,15 +1,16 @@
 <template>
-    <Form class="form md:container" @submit="submit" @submit-error="onError" :validation-schema="schema">
+    <form class="form md:container" @submit.prevent="handleForm">
 
         <fieldset>
-            <ContactInput label="Surname" name="surname" type="text" />
-            <ContactInput label="First name" name="firstName" type="text" />
-            <ContactInput label="Mail address" name="email" type="email" />
-            <ContactInput label="Object" name="object" type="text" />
-            <ContactInput label="Message" name="message" type="textarea" />
+            <ContactInput   v-for="(field, i) in fields" 
+                            :key="i" 
+                            :label="field.label"
+                            :name="field.name"
+                            :type="field.type || 'text'"
+                            :error="errors[field.name]"
+                            v-model="form[field.name]"
+            />
         </fieldset>
-
-        {{ errors }}
 
         <fieldset class="md:flex md:flex-row-reverse md:items-center">
             <button type="submit" 
@@ -25,38 +26,82 @@
                     md:pt-0 md:pl-0  md:h-24
                     md:flex md:items-center md:justify-end md:w-9/12
             `">
-                Please check the fields marked as an error before trying sending your mail
+                {{ formMessage ? formMessage : 'All these fields are required before sending the form' }}
             </div>
         </fieldset>
+
+        {{ form }}
         
-    </Form>
+    </form>
 </template>
 
 <script setup>
-import { Form, useForm } from 'vee-validate';
-import * as yup from 'yup';
+import { validatorsList } from '~/utils/forms/validators';
 
-const errorMessages = {
-  required: 'This field is required',
-  email: 'The mail pattern standard must be followed',
-  min: 'This field must contain at least ${min} characters',
-  max: 'This field can\'t exceed ${max} characters',
-};
+const validators = validatorsList();
 
-const schema = yup.object({
-    surname: yup.string().required(errorMessages.required),
-    firstName: yup.string().required(errorMessages.required),
-    email: yup.string().required(errorMessages.required).email(errorMessages.email),
-    object: yup.string().required(errorMessages.required).min(3, errorMessages.min),
-    message: yup.string().required(errorMessages.required).max(300, errorMessages.max)
-});
+const formMessage   = ref('');
+const isFormValid   = ref(true);
 
-const submit = (values) => {
-    console.log('Form submitted:', values);
-};
+// list of fields present in the form
+const fields = [
+    { name: 'surname', label: 'Surname', rules: [validators.charsTest(), validators.requiredTest()] },
+    { name: 'firstName', label: 'First Name', rules: [validators.charsTest(), validators.requiredTest()] },
+    { name: 'email', label: 'Mail address', type: 'email', rules: [validators.emailTest(), validators.requiredTest()] },
+    { name: 'object', label: 'Object', rules: [validators.minTest(3), validators.requiredTest()] },
+    { name: 'message', label: 'Message', type: 'textarea', rules: [validators.minTest(20), validators.requiredTest()] }
+];
 
-const onError = (errors) => {
-    console.error('Validation errors:', errors);
+// list of associations between every field name and a value (got from v-model) which is empty at the beginning
+const form = reactive( Object.fromEntries(fields.map( field => [field.name, '' ] )) );
+const errors = reactive( Object.fromEntries(fields.map( field => [field.name, [] ] )) );
+
+const validateField = (fieldName) => {
+
+    // search in the array for field, in order to get its rules
+    const field = fields.find(f => f.name === fieldName);
+    if (!field || !field.rules) return [];
+
+    // create empty errors array for the field
+    const fieldErrors = [];
+
+    // enumerate the field errors that are not respected
+    field.rules.forEach( rule => {
+        if (!rule.validationTest(form[fieldName])) {
+            fieldErrors.push(rule.errorMessage);
+        }
+    });
+
+    return fieldErrors;
+}
+
+const handleForm = () => {
+
+    // reinitialize vars that indicate form is invalid
+    isFormValid.value   = true;
+
+    fields.forEach( field => {
+        const fieldError = validateField(field.name);
+        errors[field.name] = fieldError;
+
+        console.log(errors);
+    });
+
+    if( Object.values(errors).some(fieldErrors => fieldErrors.length > 0) ) {
+        isFormValid.value  = false;
+        formMessage.value = 'Please check the errors in the form before sending it again';
+        console.log('Invalide');
+        return;
+    }
+
+    console.log('Submit');
+    formMessage.value = 'Your message has been sent. Thank you!';
+
+}
+
+const onSubmit = (evt, values) => {
+    console.log('Submit triggered:', evt);
+    console.log('Values:', values);
 };
 
 </script>
