@@ -8,6 +8,7 @@
                             :name="field.name"
                             :type="field.type || 'text'"
                             :error="errors[field.name]"
+                            :validate="validateField"
                             v-model="form[field.name]"
             />
         </fieldset>

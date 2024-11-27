@@ -15,6 +15,7 @@
                         :name="name"
                         :id="name"
                         v-model="model"
+                        @input="validateField"
                         :class="`h-52 w-full block px-5 py-4 bg-border/20 md:px-8 md:border-left font-body text-lg resize-none ${error.length > 0 && 'text-error'}`" 
                 />
             </template>
@@ -23,6 +24,7 @@
                         :name="name"
                         :id="name"
                         v-model="model"
+                        @input="validateField"
                         :class="`h-12 w-full px-5 bg-border/20 md:h-full md:px-8 md:border-left font-body text-lg ${error.length > 0 && 'text-error'}`"
                 />
             </template>
@@ -54,10 +56,20 @@ const props = defineProps({
         default: 'text',
     },
     error: {
-        type: Object
+        type: Array
+    },
+    validate: {
+        type: Function,
+        required: false
     }
 });
 
 const model = defineModel();
+const validateField = () => {
+    if (props.validate) {
+        const fieldErrors = props.validate(props.name);
+        props.error.splice(0, props.error.length, ...fieldErrors);
+    }
+}
 
 </script>
