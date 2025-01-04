@@ -39,6 +39,11 @@ body {
 
 }
 
+html {
+    position: relative;
+    overflow-x: clip;
+}
+
 figure {
     position: relative;
     overflow: hidden;

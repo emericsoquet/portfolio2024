@@ -3,6 +3,7 @@
         <HeroIntro></HeroIntro>
         <PaletteSelect></PaletteSelect>
         <AboutSection></AboutSection>
+        <ResumeSection></ResumeSection>
         <SkillsList></SkillsList>
         <WorksSection></WorksSection>
         <ContactSection></ContactSection>

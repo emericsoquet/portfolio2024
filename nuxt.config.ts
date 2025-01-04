@@ -26,4 +26,10 @@ export default defineNuxtConfig({
             'postcss-import': {},
         },
     },
+    runtimeConfig: {
+      clientID: process.env.CLIENT_ID || 'default_client_id',
+      public: {
+        baseURL: '',
+      },
+    },
 })

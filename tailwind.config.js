@@ -21,9 +21,9 @@ export default {
             'xs': '576px'
         },
         fontFamily: {
-            'body': ['Inter', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],
+            'body': ['Roboto', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],
             'heading': ['Syne', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],
-            'sub': ['"Clash Grotesk Variable"', 'Inter', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif']
+            'sub': ['"Clash Grotesk Variable"', 'Roboto', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif']
         },
         colors: {
             'title': '#f2f2f2',

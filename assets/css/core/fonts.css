@@ -1,4 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Syne:wght@400..800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
 
 /* custom fonts */
 @layer base {
@@ -7,9 +8,10 @@
         font-family: 'Space Grotesk Variable';
         src: url(/assets/fonts/clash-grotesk/ClashGrotesk-Variable.ttf) format('ttf');
     }
-    @font-face {
-        /* must have the file for text-stroke css property instead of css import from google fonts */
+    /* @font-face {
         font-family: 'Inter';
         src: url(/assets/fonts/inter/InterVariable.ttf) format('ttf');
-    }
+        font-weight: 100 900;
+        font-style: normal;
+    } */
 }
