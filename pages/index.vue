@@ -9,3 +9,7 @@
         <ContactSection></ContactSection>
     </main>
 </template>
+
+<script setup>
+
+</script>

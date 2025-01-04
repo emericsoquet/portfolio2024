@@ -10,7 +10,9 @@
 </template>
 
 <script setup>
+import { useResumeStore } from '~/stores/resumeStore';
+const store = useResumeStore();
 const openResume = () => {
-    console.log('cv');
+    store.toggleResume();
 }
 </script>

@@ -1,5 +1,35 @@
 .resume {
-    @apply border-top;
+
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 1s;
+
+    .container {
+        min-height: 0;
+        transition: visibility 1s;
+        visibility: hidden;
+    }
+
+    &.is-active {
+        grid-template-rows: 1fr;
+        .container {
+            visibility: visible;
+        }
+    }
+
+    position: relative;
+    z-index: 0;
+    &::before {
+        content: '';
+        display: block;
+        position: absolute;
+        top: 0;
+        left: -100vw;
+        right: -100vw;
+        height: 1px;
+        @apply bg-border;
+    }
 }
 
 .resume > .container > .resume__grid > article:not(:last-child), .resume__skills {
@@ -36,6 +66,13 @@
 @media (min-width: 768px) {
     .resume__column {
         @apply px-5;
+    }
+
+    .resume {
+        transition: grid-template-rows .5s;
+        .container {
+            transition: visibility .5s;
+        }
     }
 }
 @media (min-width: 1024px) {
