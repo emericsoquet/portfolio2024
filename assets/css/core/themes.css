@@ -1,5 +1,7 @@
 /* palettes available */
 
+
+
 .amethyst {
     background: rgb(142,122,185);
     background: -moz-linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
@@ -10,6 +12,9 @@
     figure::after, .palette__item::before, .work article::before {
         background: #4F2E8C;
     }
+
+    --theme-color: #9178bf;
+    --gradient-color: linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
 }
 
 .emerald {
@@ -22,6 +27,9 @@
     figure::after, .palette__item::before, .work article::before {
         background: #3FC16B;
     }
+
+    --theme-color: #3FC16B;
+    --gradient-color: linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
 }
 
 .garnet {
@@ -34,4 +42,26 @@
     figure::after, .palette__item::before, .work article::before {
         background: #B84042;
     }
+
+    --theme-color: #B84042;
+    --gradient-color: linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
+}
+
+.project-page {
+    background: none;
+    @apply bg-projectBg;
+
+    --border-color: var(--theme-color);
+
+    &::before {
+        display: none;
+    }
+
+    figure::after {
+        display: none;
+    }
+    figure > img {
+        filter: none;
+    }
+
 }

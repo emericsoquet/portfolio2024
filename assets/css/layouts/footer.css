@@ -1,6 +1,8 @@
 .footer__cell {
-    border: 1px solid white;
-    @apply border-border;
+    border-style: solid;
+    border-width: 1px;
+    border-color: var(--border-color, theme('colors.border'));
+    /* @apply border-border; */
     @apply px-5;
     @apply h-16;
     flex: 100%;

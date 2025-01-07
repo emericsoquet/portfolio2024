@@ -3,8 +3,8 @@
 
         <div class="container grid auto-rows-max content-center my-20 md:my-48">
             <h1>
-                <span class="hero__suptitle uppercase font-sub block">Emeric Soquet</span>
-                <span class="hero__title font-heading font-bold block">Frontend developer</span>
+                <span class="main-suptitle uppercase font-sub block">Emeric Soquet</span>
+                <span class="main-title font-heading font-bold block">Frontend developer</span>
             </h1>
     
             <p class="text-2xl xs:text-3xl md:text-4xl font-sub my-8 md:my-10 md:mt-16 font-light lg:max-w-4xl">With a taste for design and interaction. It’s crystal clear, my pursuit is to make your websites as polished as a diamond.</p>

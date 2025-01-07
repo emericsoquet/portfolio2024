@@ -1,3 +1,7 @@
 h1, h2, h3 {
     @apply text-title;
 }
+
+.project-page p {
+    margin: 1rem 0;
+}

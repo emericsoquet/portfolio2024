@@ -11,5 +11,9 @@
 </template>
 
 <script setup>
-
+useHead({
+    bodyAttrs: {
+        class: 'home-page'
+    }
+})
 </script>

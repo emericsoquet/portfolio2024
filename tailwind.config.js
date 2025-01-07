@@ -29,7 +29,8 @@ export default {
             'title': '#f2f2f2',
             'border': '#eaeaea',
             'base': '#f4f4f5',
-            'error': '#f01d24'
+            'error': '#f01d24',
+            'projectBg': '#181717'
         },
     },
     plugins: [
@@ -44,16 +45,16 @@ export default {
 
                 // call quickly a border by a class
                 '.border-top': {
-                    borderTop: `1px solid ${theme('colors.border')}`
+                    borderTop: `1px solid var(--border-color, ${theme('colors.border')})`
                 },
                 '.border-bottom': {
-                    borderBottom: `1px solid ${theme('colors.border')}`
+                    borderBottom: `1px solid var(--border-color, ${theme('colors.border')})`
                 },
                 '.border-left': {
-                    borderLeft: `1px solid ${theme('colors.border')}`
+                    borderLeft: `1px solid var(--border-color, ${theme('colors.border')})`
                 },
                 '.border-right': {
-                    borderRight: `1px solid ${theme('colors.border')}`
+                    borderRight: `1px solid var(--border-color, ${theme('colors.border')})`
                 }
             })
         }

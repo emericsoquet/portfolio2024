@@ -1,0 +1,18 @@
+.summary {
+    position: relative;
+    z-index: 0;
+    &::before, &::after {
+        position: absolute;
+        content: '';
+        top: 0;
+        left: -100vw;
+        right: -100vw;
+        height: 1px;
+        background: var(--theme-color);
+    }
+
+    &::after {
+        top: auto;
+        bottom: 0;
+    }
+}
