@@ -1,4 +1,4 @@
-.summary {
+.summary__wrapper {
     position: relative;
     z-index: 0;
     &::before, &::after {
@@ -9,10 +9,19 @@
         right: -100vw;
         height: 1px;
         background: var(--theme-color);
+        @media (min-width: 768px) {
+            right: 0;
+        }
     }
 
     &::after {
         top: auto;
         bottom: 0;
+    }
+}
+
+.project__cover {
+    img {
+        display: block;
     }
 }

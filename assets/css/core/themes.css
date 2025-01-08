@@ -57,10 +57,10 @@
         display: none;
     }
 
-    figure::after {
+    main figure::after {
         display: none;
     }
-    figure > img {
+    main figure > img {
         filter: none;
     }
 
