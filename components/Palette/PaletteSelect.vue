@@ -17,16 +17,17 @@
 </template>
 
 <script setup>
-import EmeraldIcon   from '~/assets/media/icons/icon-emerald.svg';
+import SapphireIcon   from '~/assets/media/icons/icon-emerald.svg';
 import AmethystIcon from '~/assets/media/icons/icon-amethyst.svg';
 import GarnetIcon   from '~/assets/media/icons/icon-garnet.svg';
 
 const generalStore = useGeneralStore();
 
 const palette = reactive([
-    { 'name' : 'emerald',    label : 'Emerald',   'icon' : EmeraldIcon },
-    { 'name' : 'amethyst',   label : 'Amethyst',  'icon' : AmethystIcon },
-    { 'name' : 'garnet',     label : 'Garnet',    'icon' : GarnetIcon },
+    /* { 'name' : 'emerald',    label : 'Emerald',   'icon' : EmeraldIcon }, */
+    { 'name' : 'sapphire',     label : 'Sapphire',  'icon' : SapphireIcon },
+    { 'name' : 'amethyst',     label : 'Amethyst',  'icon' : AmethystIcon },
+    { 'name' : 'garnet',       label : 'Garnet',    'icon' : GarnetIcon },
 ]);
 
 // use the action inside generalStore and gives the name as parameter : it's the class name theme for body

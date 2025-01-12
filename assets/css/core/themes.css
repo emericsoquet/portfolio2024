@@ -29,7 +29,7 @@
     }
 
     --theme-color: #3FC16B;
-    --gradient-color: linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
+    --gradient-color: linear-gradient(90deg, rgba(52,201,104,1) 0%, rgba(69,186,61,1) 25%, rgba(101,207,62,1) 49%, rgba(114,193,41,1) 84%, rgba(136,186,49,1) 100%);
 }
 
 .garnet {
@@ -44,7 +44,22 @@
     }
 
     --theme-color: #B84042;
-    --gradient-color: linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
+    --gradient-color: linear-gradient(90deg, rgba(215,78,108,1) 0%, rgba(229,124,131,1) 28%, rgba(223,106,124,1) 50%, rgba(203,89,117,1) 75%, rgba(140,57,58,1) 100%);
+}
+
+.sapphire {
+    background: rgb(45,93,191);
+    background: -moz-linear-gradient(90deg, rgba(45,93,191,1) 0%, rgba(44,117,235,1) 41%, rgba(73,164,249,1) 73%, rgba(26,161,229,1) 84%);
+    background: -webkit-linear-gradient(90deg, rgba(45,93,191,1) 0%, rgba(44,117,235,1) 41%, rgba(73,164,249,1) 73%, rgba(26,161,229,1) 84%);
+    background: linear-gradient(90deg, rgba(45,93,191,1) 0%, rgba(44,117,235,1) 41%, rgba(73,164,249,1) 73%, rgba(26,161,229,1) 84%);
+    filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2d5dbf",endColorstr="#1aa1e5",GradientType=1);
+
+    figure::after, .palette__item::before, .work article::before {
+        background: #569EF0;
+    }
+
+    --theme-color: #538ad0;
+    --gradient-color: linear-gradient(90deg, rgba(45,93,191,1) 0%, rgba(44,117,235,1) 41%, rgba(73,164,249,1) 73%, rgba(26,161,229,1) 84%);
 }
 
 .project-page {

@@ -11,6 +11,7 @@
         @apply font-body;
         @apply leading-none;
         text-transform: uppercase;
+        /* @apply font-heading !important; */
         &:nth-child(odd) {
             color: transparent;
             -webkit-text-stroke-width: 1px;

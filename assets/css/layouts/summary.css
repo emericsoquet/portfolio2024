@@ -20,8 +20,43 @@
     }
 }
 
+.cover__wrapper::after {
+    display: none;
+    @apply border-top;
+    @apply border-left;
+    @apply border-bottom;
+    @apply ml-5;
+    content: '';
+    position: absolute;
+    right: -100vw;
+    left: 100%;
+    top: 0;
+    bottom: 0;
+
+    @media (min-width: 768px) {
+        display: block;
+    }
+
+}
+@media (min-width: 1024px) {
+    .cover__wrapper::after {
+        @apply ml-8;
+    }
+}
+
 .project__cover {
+    display: block;
+    position: relative;
     img {
         display: block;
+    }
+}
+
+.chapter:first-child {
+    @apply mt-10;
+}
+@media (min-width: 768px) {
+    .chapter:first-child {
+        @apply mt-20;
     }
 }
