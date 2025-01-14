@@ -6,6 +6,7 @@ export default defineNuxtConfig({
     modules: [
       '@pinia/nuxt'
     ],
+    plugins: [],
     imports: {
       autoImport: true,
       dirs: [
@@ -17,7 +18,14 @@ export default defineNuxtConfig({
           path: '~/components',
           pathPrefix: false,
         }
-      ],
+    ],
+    app: {
+      pageTransition: {
+        name: 'fade-slide',
+        mode: 'out-in',
+      },
+    },
+    ssr: true,
     postcss: {
         plugins: {
             'tailwindcss': {},

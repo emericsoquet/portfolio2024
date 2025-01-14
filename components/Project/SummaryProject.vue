@@ -50,29 +50,29 @@ const articleRef = ref(null);
 const imgRef = ref(null);
 const coverRef = ref(null);
 
-onMounted(() => {
-    const handleResize = async () => {
-        isDesktop.value = window.innerWidth >= 768;
+const handleResize = async () => {
+    isDesktop.value = window.innerWidth >= 768;
 
-        await nextTick();
-        
-        const coverHeight   = imgRef.value.getBoundingClientRect().height;
-        const articleHeight = articleRef.value.getBoundingClientRect().height;
+    await nextTick();
+    
+    const coverHeight   = imgRef.value.getBoundingClientRect().height;
+    const articleHeight = articleRef.value.getBoundingClientRect().height;
 
-        if(isDesktop.value) {
-            if (coverHeight > articleHeight) {
-                if (coverRef.value.style.maxHeight !== articleHeight + 'px') {
-                    coverRef.value.style.maxHeight = articleHeight + 'px';
-                }
-            } else {
-                if (coverRef.value.style.maxHeight !== 'none') {
-                    coverRef.value.style.maxHeight = 'none';
-                }
+    if(isDesktop.value) {
+        if (coverHeight > articleHeight) {
+            if (coverRef.value.style.maxHeight !== articleHeight + 'px') {
+                coverRef.value.style.maxHeight = articleHeight + 'px';
+            }
+        } else {
+            if (coverRef.value.style.maxHeight !== 'none') {
+                coverRef.value.style.maxHeight = 'none';
             }
         }
+    }
 
-    };
+};
 
+onMounted(() => {
     handleResize();
     window.addEventListener('resize', handleResize);
 

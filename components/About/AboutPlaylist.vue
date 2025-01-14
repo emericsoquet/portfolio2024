@@ -1,20 +1,20 @@
 <template>
     <article class="about__playlist px-5 md:flex-1 md:border-0 md:border-left">
-        <p v-if="!accessStore.accessToken">Authentification en cours...</p>
-        <div v-else>
+        <!-- <p v-if="!accessStore.accessToken">Authentification en cours...</p> -->
+        <!-- <div v-else>
             <div>
-                <!-- <ul>
+                <ul>
                     <li v-for="track in favorites" :key="track.track.id">
                         {{ track.track.name }} - {{ track.track.artists[0].name }}
                     </li>
-                </ul> -->
+                </ul>
             </div>
-        </div>
+        </div> -->
     </article>
 </template>
 
 <script setup>
-import { useAccessStore } from '~/stores/accessStore';
+/* import { useAccessStore } from '~/stores/accessStore';
 
 const accessStore = useAccessStore();
 const favorites = ref([]);
@@ -51,7 +51,7 @@ onMounted(async () => {
     } catch (error) {
         console.error('Erreur dans le processus d\'authentification :', error);
     }
-});
+}); */
 </script>
 
 <style scoped>

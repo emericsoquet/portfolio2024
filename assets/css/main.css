@@ -3,6 +3,7 @@
 @import './core/fonts.css';
 @import './core/themes.css';
 @import './core/typography.css';
+@import './core/transitions.css';
 
 @import './components/buttons.css';
 @import './components/titles.css';

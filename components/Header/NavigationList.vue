@@ -17,7 +17,7 @@
 <script setup>
 
 const navLinks = reactive([
-    { label: 'About me', url: '#'},
+    { label: 'About me', url: '/aaa'},
     { label: 'Works', url: '#'},
     { label: 'Contact', url: '#'},
 ]);
