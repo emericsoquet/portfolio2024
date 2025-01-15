@@ -18,7 +18,8 @@ export default {
         screens: {
             ...require('tailwindcss/defaultTheme').screens,
             'mb': '420px',
-            'xs': '576px'
+            'xs': '576px',
+            '2xl': '1420px'
         },
         fontFamily: {
             'body': ['Roboto', 'ui-sans-serif', 'Helvetica', 'Arial', 'sans-serif'],
