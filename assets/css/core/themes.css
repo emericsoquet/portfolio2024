@@ -1,7 +1,5 @@
 /* palettes available */
 
-
-
 .amethyst {
     background: rgb(142,122,185);
     background: -moz-linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
@@ -54,26 +52,32 @@
     background: linear-gradient(90deg, rgba(45,93,191,1) 0%, rgba(44,117,235,1) 41%, rgba(73,164,249,1) 73%, rgba(26,161,229,1) 84%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr="#2d5dbf",endColorstr="#1aa1e5",GradientType=1);
 
+    figure::after, .palette__item::before, .work article::before {
+        background: #538ad0;
+    }
+
     --theme-color: #538ad0;
     --gradient-color: linear-gradient(90deg, rgba(45,93,191,1) 0%, rgba(44,117,235,1) 41%, rgba(73,164,249,1) 73%, rgba(26,161,229,1) 84%);
 }
 
 body {
-    transition: background 0.3s;
     figure::after, .palette__item::before, .work article::before {
-        background: #569EF0;
         transition: background 0.3s ease-out;
+    }
+    &::after {
+        transition: opacity .3s ease-out;
     }
 }
 
 .project-page {
     background: none;
-    @apply bg-projectBg;
 
     --border-color: var(--theme-color);
 
-    &::before {
-        display: none;
+    &::after {
+        background-image: none;
+        @apply bg-projectBg;
+        opacity: 1;
     }
 
     main figure::after {
