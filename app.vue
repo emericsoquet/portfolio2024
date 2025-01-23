@@ -10,10 +10,12 @@
 <script setup>
 // stores are available without imports because of nuxt configuration with pinia
 const generalStore = useGeneralStore();
-const isThemeLoaded = computed( () => generalStore.isThemeLoaded )
+const contentStore = useContentStore();
+const isThemeLoaded = computed( () => generalStore.isThemeLoaded );
 
-// change dynamically the theme depending on state theme which is in generalStore
-onMounted(() => {
+onMounted( async() => {
+
+    // change dynamically the theme depending on state theme which is in generalStore
     generalStore.initTheme();
     useHead({
         bodyAttrs: {
@@ -21,8 +23,13 @@ onMounted(() => {
         }
     }); 
 
+
     window.addEventListener('mousemove', animateCursor);
     updateCursor();
+
+    // load all content
+    await contentStore.fetchAllContent();
+
 });
 
 // animate cursor circle blur
@@ -37,7 +44,6 @@ const animateCursor = (e) => {
     targetX = e.clientX;
     targetY = e.clientY;
 };
-
 const updateCursor = () => {
     cursorX += (targetX - cursorX) * 0.1; // La vitesse de lissage peut être ajustée (0.1 est lent, 0.5 est rapide)
     cursorY += (targetY - cursorY) * 0.1;
@@ -47,6 +53,8 @@ const updateCursor = () => {
 
     requestAnimationFrame(updateCursor);
 };
+
+
 
 </script>
 

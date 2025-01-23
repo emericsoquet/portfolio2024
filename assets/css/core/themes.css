@@ -105,7 +105,7 @@ body {
     position: fixed;
     left: var(--cursor-left);
     top: var(--cursor-top);
-    box-shadow: 0 0 200px 200px rgb(255, 255, 255, 25%);
+    box-shadow: 0 0 200px 200px rgb(255, 255, 255, 15%);
     border-radius: 50%;
     filter: blur(100%) grayscale(100%);
     z-index: 2;

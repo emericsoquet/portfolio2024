@@ -15,5 +15,5 @@ useHead({
     bodyAttrs: {
         class: 'home-page'
     }
-})
+});
 </script>

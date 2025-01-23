@@ -6,7 +6,9 @@ export default defineNuxtConfig({
     modules: [
       '@pinia/nuxt'
     ],
-    plugins: [],
+    plugins: [
+      '~/plugins/firebase',
+    ],
     imports: {
       autoImport: true,
       dirs: [
@@ -35,9 +37,6 @@ export default defineNuxtConfig({
         },
     },
     runtimeConfig: {
-      clientID: process.env.CLIENT_ID || 'default_client_id',
-      public: {
-        baseURL: '',
-      },
+      public: process.env,
     },
 })
