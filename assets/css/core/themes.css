@@ -11,6 +11,10 @@
         background: #4F2E8C;
     }
 
+    &.project-page .cursor {
+        box-shadow: 0 0 200px 200px rgb(145, 120, 191, 5%);
+    }
+
     --theme-color: #9178bf;
     --gradient-color: linear-gradient(90deg, rgba(142,122,185,1) 7%, rgba(113,106,196,1) 60%, rgba(53,82,158,1) 99%);
 }
@@ -41,6 +45,10 @@
         background: #B84042;
     }
 
+    &.project-page .cursor {
+        box-shadow: 0 0 200px 200px rgb(184, 64, 66, 5%);
+    }
+
     --theme-color: #B84042;
     --gradient-color: linear-gradient(90deg, rgba(215,78,108,1) 0%, rgba(229,124,131,1) 28%, rgba(223,106,124,1) 50%, rgba(203,89,117,1) 75%, rgba(140,57,58,1) 100%);
 }
@@ -54,6 +62,10 @@
 
     figure::after, .palette__item::before, .work article::before {
         background: #538ad0;
+    }
+
+    &.project-page .cursor {
+        box-shadow: 0 0 200px 200px rgb(83, 138, 208, 5%);
     }
 
     --theme-color: #538ad0;
@@ -87,4 +99,15 @@ body {
         filter: none;
     }
 
+}
+
+.cursor {
+    position: fixed;
+    left: var(--cursor-left);
+    top: var(--cursor-top);
+    box-shadow: 0 0 200px 200px rgb(255, 255, 255, 25%);
+    border-radius: 50%;
+    filter: blur(100%) grayscale(100%);
+    z-index: 2;
+    pointer-events: none;
 }

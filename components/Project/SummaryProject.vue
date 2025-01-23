@@ -34,6 +34,10 @@
 </template>
 
 <script setup>
+import { gsap } from 'gsap';
+import ScrollTrigger from 'gsap/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
 
 const skills = reactive([
     'WordPress', 
@@ -63,6 +67,7 @@ const handleResize = async () => {
             if (coverRef.value.style.maxHeight !== articleHeight + 'px') {
                 coverRef.value.style.maxHeight = articleHeight + 'px';
             }
+            initParallaxEffect(coverRef.value, imgRef.value, articleHeight);
         } else {
             if (coverRef.value.style.maxHeight !== 'none') {
                 coverRef.value.style.maxHeight = 'none';
@@ -70,6 +75,28 @@ const handleResize = async () => {
         }
     }
 
+};
+
+const initParallaxEffect = (cover, image, maxHeight) => {
+    const imageHeight = image.getBoundingClientRect().height;
+    const scrollDistance = maxHeight - imageHeight;
+    
+    if (scrollDistance < 0) {
+        gsap.fromTo(
+            image,
+            { y: 0 },
+            {
+                y: scrollDistance,
+                ease: 'none',
+                scrollTrigger: {
+                    trigger: cover,
+                    start: 'top bottom',
+                    end: 'bottom top',
+                    scrub: true,
+                },
+            }
+        );
+    }
 };
 
 onMounted(() => {
@@ -81,6 +108,7 @@ onMounted(() => {
 
 onUnmounted(() => {
     window.removeEventListener('resize', handleResize);
+    ScrollTrigger.getAll().forEach(trigger => trigger.kill());
 });
 
 </script>
