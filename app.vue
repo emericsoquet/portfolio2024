@@ -13,7 +13,7 @@ const generalStore = useGeneralStore();
 const contentStore = useContentStore();
 const isThemeLoaded = computed( () => generalStore.isThemeLoaded );
 
-onMounted( async() => {
+onMounted( async () => {
 
     // change dynamically the theme depending on state theme which is in generalStore
     generalStore.initTheme();
@@ -28,7 +28,11 @@ onMounted( async() => {
     updateCursor();
 
     // load all content
-    await contentStore.fetchAllContent();
+    try {
+        await contentStore.fetchAllContent();
+    } catch (error) {
+        console.error('Impossible de charger l\'ensemble du contenu :', error);
+    }
 
 });
 

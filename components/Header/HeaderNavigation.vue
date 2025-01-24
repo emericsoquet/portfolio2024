@@ -15,14 +15,22 @@
             <NavigationList></NavigationList>
         </template>
 
-        <button class="nav__item font-bold ml-5 sm:ml-7 font-sub" to="">{{ language }}</button>
+        <button class="nav__item font-bold ml-5 sm:ml-7 font-sub uppercase" @click="switchLanguage">{{ language }}</button>
 
     </nav>
 </template>
 
 <script setup>
 
-const language = ref('FR');
+const contentStore = useContentStore();
+const language = computed( () => {
+    if(contentStore.lang === 'fr')
+        return 'en';
+    else 
+        return 'fr';
+});
+
+const switchLanguage = () => contentStore.switchLanguage();
 
 // teleport only works when the app is mounted because the screen size is checked
 const shouldTeleport = ref(false);

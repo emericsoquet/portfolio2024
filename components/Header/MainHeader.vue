@@ -4,6 +4,7 @@
             <HeaderLogo></HeaderLogo>
             <HeaderNavigation></HeaderNavigation>
         </div>
+        {{ content }}
     </header>
 </template>
 

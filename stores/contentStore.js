@@ -8,6 +8,21 @@ export const useContentStore = defineStore( 'content', () => {
     const projects  = ref([]);
     const content   = ref([]);
 
+    const lang      = ref('en');
+
+    onMounted( () => {
+        if (typeof localStorage !== 'undefined') {
+            const storedLang = localStorage.getItem('lang');
+            if (storedLang)
+                lang.value = storedLang;
+        }
+    })
+
+    const switchLanguage = () => {
+        lang.value = lang.value === 'en' ? 'fr' : 'en';
+        localStorage.setItem('lang', lang.value);
+    }
+
     const fetchGeneralContent = async () => {
         try {
             const response = await fetchCollection('general');
@@ -48,11 +63,19 @@ export const useContentStore = defineStore( 'content', () => {
         }
     }
 
+    const getChoosenGeneral = computed( () => {
+        return general.value.find( item => item.id === lang.value ) || {};
+    });
+    const getSharedGeneral = computed( () => { 
+        return general.value.find( item => item.id === 'shared' ) || {};
+    });
+
     return {
-        fetchAllProjects,
-        fetchHomeContent,
-        fetchGeneralContent,
-        fetchAllContent
+        fetchAllContent,
+        getChoosenGeneral,
+        getSharedGeneral,
+        switchLanguage,
+        lang,
     }
 
 });
