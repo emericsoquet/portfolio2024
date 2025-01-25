@@ -4,10 +4,10 @@
         <NetworksList extraClasses="footer__cell lg:flex-1 lg:border-r-0"></NetworksList>
 
         <div class="footer__cell xs:flex-1 xs:border-r-0 lg:justify-center">
-            <p class="font-heading uppercase">Icons by <a href="#">@Maxim Kulikov</a></p>
+            <p class="font-heading uppercase" v-html="iconsCredits"></p>
         </div>
         <div class="footer__cell xs:flex-1 lg:justify-center">
-            <p class="font-heading uppercase">Design & made with love</p>
+            <p class="font-heading uppercase">{{ content?.credits?.website }}</p>
         </div>
 
         <FooterArrow ref="footerArrow"></FooterArrow>
@@ -18,6 +18,18 @@
 <script setup>
 const footer = ref(null);
 const footerArrow = ref(null);
+
+const content = computed( () => useContentStore().getChoosenGeneral.footer );
+const iconsLink = computed( () => {
+    if(content.value)
+        return content.value.credits.iconsLink;
+} );
+const iconsCredits = computed( () => {
+    if(content.value && iconsLink.value) {
+        const string = content.value.credits.icons;
+        return string.replace('@Maxim Kulikov', `<a href="${iconsLink.value}" target="_blank">@Maxim Kulikov</a>`);
+    }
+});
 
 onMounted( () => {
 

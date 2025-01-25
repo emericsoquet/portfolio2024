@@ -2,13 +2,13 @@
 
 <template>
     <div :class="`${extraClasses} networks pl-5 pr-4 py-3 w-max flex items-center`">
-        <p class="font-heading font-semibold tracking-wider mr-10 md:text-lg">Follow me</p>
+        <p class="font-heading font-semibold tracking-wider mr-10 md:text-lg">{{ networksLabel  }}</p>
         <div class="networks__list flex gap-2">
-            <a  v-for="(network, i) in networks"
+            <a  v-for="(network, i) in networksList"
                 :key="i"
                 :class="`network cursor-pointer bg-base bg-opacity-20 aspect-square w-8 rounded-md flex items-center justify-center ${ network.label === 'GitHub' ? 'p-1.5' : 'p-2' }`"
-                :href="network.link">
-                <img :src="network.img" :alt="network.label" class="cursor-pointer">
+                :href="network.url">
+                <img :src="network.logo" :alt="network.logoAlt" class="cursor-pointer">
             </a>
         </div>
     </div>
@@ -25,9 +25,26 @@ const props = defineProps({
     }
 });
 
-const networks = reactive([
-    { label: 'LinkedIn', link: 'https://www.linkedin.com/in/emeric-soquet/', img: LinkedInLogo },
-    { label: 'GitHub', link: 'https://github.com/emericsoquet', img: GitHubLogo }
-]);
+const networksLabel  = computed( () => useContentStore().getChoosenGeneral?.networks?.label );
+const networks = computed( () => useContentStore().getSharedGeneral.networks );
+
+const networksList = computed( () => {
+
+    if(!networks.value)
+        return [];
+
+    return networks.value.map( network => {
+
+        let alt = 'Logo de ' + network.label;
+        if(useContentStore().lang === 'en')
+            alt = 'Logo of ';
+
+        return {
+            logoAlt: alt,
+            ...network
+        }
+    });
+
+});
 
 </script>
