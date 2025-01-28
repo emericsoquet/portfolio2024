@@ -70,10 +70,15 @@ export const useContentStore = defineStore( 'content', () => {
         return general.value.find( item => item.id === 'shared' ) || {};
     });
 
+    const getChoosenHome = computed( () => {
+        return home.value.find( item => item.id === lang.value ) || {};
+    });
+
     return {
         fetchAllContent,
         getChoosenGeneral,
         getSharedGeneral,
+        getChoosenHome,
         switchLanguage,
         lang,
     }

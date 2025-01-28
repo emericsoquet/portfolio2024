@@ -4,7 +4,7 @@
 
         <div class="palette__list md:flex">
             <button    :class="`palette__item flex w-full items-center px-4 py-5 md:flex-1 md:w-auto border-bottom ${ i === 0 ? 'border-top md:border-left' : '' } md:border-top md:border-right ${generalStore.theme === theme.name ? 'is-active' : ''}`" 
-                    v-for="(theme, i) in palette" 
+                    v-for="(theme, i) in newPalette" 
                     :key="i"
                     @click="changeTheme(theme.name)">
                 <img    :src="theme.icon" 
@@ -23,11 +23,25 @@ import GarnetIcon   from '~/assets/media/icons/icon-garnet.svg';
 
 const generalStore = useGeneralStore();
 
+const colors = computed( () => useContentStore().getChoosenGeneral?.themes );
+
 const palette = reactive([
     { 'name' : 'sapphire',     label : 'Sapphire',  'icon' : SapphireIcon },
     { 'name' : 'amethyst',     label : 'Amethyst',  'icon' : AmethystIcon },
     { 'name' : 'garnet',       label : 'Garnet',    'icon' : GarnetIcon },
 ]);
+
+const newPalette = computed( () => {
+    if(!colors.value)
+        return [];
+
+    return palette.map( (color, i) => {
+        return {
+            ...color,
+            label: colors.value[i]
+        }
+    })
+});
 
 // associate hexas for every theme
 const themes = {
