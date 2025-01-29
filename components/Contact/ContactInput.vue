@@ -33,7 +33,7 @@
         <div    :class="`border-top
                 md:border-t-0 md:border-left md:border-right
                 flex items-center`">
-            <span class="px-5 py-3 border-bottom block w-full md:border-0 text-sm">{{ error[0] }}</span>
+            <span class="px-5 py-3 border-bottom block w-full md:border-0 text-sm" >{{ error[0] }}</span>
         </div>
 
     </div>

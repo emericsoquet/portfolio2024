@@ -1,21 +1,21 @@
 <template>
     <article class="resume__column md:order-3 md:col-span-5 md:border-left md:border-top lg:col-span-4 lg:pb-16">
         <section class="resume__education">
-            <h3 class="text-3xl font-bold uppercase font-body mb-5">Formations</h3>
+            <h3 class="text-3xl font-bold uppercase font-body mb-5">{{ content?.education.title }}</h3>
             <div class="education__list">
-                <EducationItem v-for="(item, i) in educationItems" :key="i" :education="item" />
+                <EducationItem v-for="(item, i) in content?.education.educationList" :key="i" :education="item" />
             </div>
         </section>
         <section class="resume__skills mt-8 pt-8 md:pt-0 md:mt-10">
-            <h3 class="text-3xl font-bold uppercase font-body mb-5">Compétences</h3>
+            <h3 class="text-3xl font-bold uppercase font-body mb-5">{{ content?.skills.title }}</h3>
             <div class="2xl:grid 2xl:grid-cols-2 2xl:gap-6">
                 <ul>
-                    <li v-for="(skill, i) in hardSkills" :key="i" class="mb-2">
+                    <li v-for="(skill, i) in content?.skills.hardSkills" :key="i" class="mb-2">
                         {{ skill }}
                     </li>
                 </ul>
                 <ul class="mt-6 2xl:mt-0">
-                    <li v-for="(skill, i) in softSkills" :key="i" class="mb-2">
+                    <li v-for="(skill, i) in content?.skills.softSkills" :key="i" class="mb-2">
                         {{ skill }}
                     </li>
                 </ul>
@@ -25,6 +25,9 @@
 </template>
 
 <script setup>
+const content = computed( () => useContentStore().getChoosenHome.resume );
+
+
 const hardSkills = reactive([
     'Nuxt, Vue',
     'Javascript',

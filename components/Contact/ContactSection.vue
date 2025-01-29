@@ -3,8 +3,8 @@
 
         <div class="container">
             <h2>
-                <span class="title font-heading">Contact me</span>
-                <span class="subtitle">We may create amazing things together</span>
+                <span class="title font-heading">{{ content?.title }}</span>
+                <span class="subtitle">{{ content?.subtitle }}</span>
             </h2>
         </div>
 
@@ -14,5 +14,5 @@
 </template>
 
 <script setup>
-
+const content = computed( () => useContentStore().getChoosenHome.contact );
 </script>

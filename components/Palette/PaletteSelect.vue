@@ -1,6 +1,6 @@
 <template>
     <section class="palette md:container">
-        <p class="uppercase text-right text-xs mb-2 mr-2 md:mr-0 md:mb-5 md:text-sm">Pick your favorite gem</p>
+        <p class="uppercase text-right text-xs mb-2 mr-2 md:mr-0 md:mb-5 md:text-sm">{{ title }}</p>
 
         <div class="palette__list md:flex">
             <button    :class="`palette__item flex w-full items-center px-4 py-5 md:flex-1 md:w-auto border-bottom ${ i === 0 ? 'border-top md:border-left' : '' } md:border-top md:border-right ${generalStore.theme === theme.name ? 'is-active' : ''}`" 
@@ -23,7 +23,8 @@ import GarnetIcon   from '~/assets/media/icons/icon-garnet.svg';
 
 const generalStore = useGeneralStore();
 
-const colors = computed( () => useContentStore().getChoosenGeneral?.themes );
+const colors = computed( () => useContentStore().getChoosenGeneral?.themes?.themesList );
+const title  = computed( () => useContentStore().getChoosenGeneral?.themes?.label );
 
 const palette = reactive([
     { 'name' : 'sapphire',     label : 'Sapphire',  'icon' : SapphireIcon },
