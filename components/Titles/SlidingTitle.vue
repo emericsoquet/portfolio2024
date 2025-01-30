@@ -1,5 +1,5 @@
 <template>
-    <div class="title__container title--sliding border-top border-bottom relative" ref="titleSection">
+    <div class="title__container title--sliding border-top border-bottom relative" ref="titleSection" :id="sectionID">
         <div class="title__wrapper" ref="titleSlider">
                 <h2 class="title">{{ title }}</h2>
                 <span class="title" v-for="n in 10" :key="n">{{ title }}</span>
@@ -14,7 +14,14 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
 
-const title = computed( () => useContentStore().getChoosenGeneral.navigation?.[1])
+const title = computed( () => useContentStore().getChoosenGeneral.navigation?.[1]);
+
+const sectionID = computed( () => {
+    if(!title.value)
+        return null
+
+    return convertFunctions().convertStringToURL(title.value);
+});
 
 /* const title = ref('Works'); */
 const titleSlider = ref(null);

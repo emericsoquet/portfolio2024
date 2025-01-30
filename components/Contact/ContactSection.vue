@@ -1,5 +1,5 @@
 <template>
-    <section class="contact my-20 lg:my-36">
+    <section class="contact my-20 lg:my-36" :id="sectionID">
 
         <div class="container">
             <h2>
@@ -15,4 +15,17 @@
 
 <script setup>
 const content = computed( () => useContentStore().getChoosenHome.contact );
+
+const sectionID = computed( () => {
+    if(!useContentStore().getChoosenGeneral.navigation)
+        return null
+
+    return convertFunctions().convertStringToURL(useContentStore().getChoosenGeneral?.navigation[2]);
+});
 </script>
+
+<style scoped>
+.contact {
+    scroll-margin-top: 50px;
+}
+</style>

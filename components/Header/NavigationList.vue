@@ -4,10 +4,10 @@
             <li v-for="(link, i) in newNavigation"
                 :key="i"
                 class="nav__item">
-                    <NuxtLink   :to="link.url"
-                                class="md:px-2 py-1 block md:mx-2 text-lg font-heading">
+                    <a   @click="scrollToSection(link.url)"
+                                class="md:px-2 py-1 block md:mx-2 text-lg font-heading cursor-pointer">
                         {{ link.label }}
-                    </NuxtLink>
+                    </a>
             </li>
         </ul>
     
@@ -18,30 +18,26 @@
 const contentStore = useContentStore();
 const navigation = computed( () => contentStore.getChoosenGeneral.navigation );
 
-const convertStringToURL = (string) => {
-    return string
-        .normalize("NFD")
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLowerCase()
-        .replace(/\s+/g, '-')
-        .replace(/[^a-z0-9\-]/g, '');
-}
-
 const newNavigation = computed( () => {
     return navigation.value 
         ? navigation.value.map( item => {
             return {
                 label: item,
-                url: `#${convertStringToURL(item)}`
+                url: `#${convertFunctions()?.convertStringToURL(item)}`
             }
         })
         : [];
-})
+});
 
-const navLinks = reactive([
-    { label: 'About me', url: '/aaa'},
-    { label: 'Works', url: '#'},
-    { label: 'Contact', url: '#'},
-]);
+const scrollToSection = (url) => {
+    const sectionId = url.replace('#', ''); // Retire le # pour obtenir l'id
+    const sectionElement = document.getElementById(sectionId);
+
+    if (sectionElement) {
+        sectionElement.scrollIntoView({ behavior: 'smooth' });
+    } else {
+        console.warn(`Element with id "${sectionId}" not found.`);
+    }
+};
 
 </script>
