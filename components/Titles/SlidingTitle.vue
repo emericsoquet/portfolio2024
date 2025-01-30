@@ -1,5 +1,5 @@
 <template>
-    <div class="title__container title--sliding border-top border-bottom relative" ref="titleSection" :id="sectionID">
+    <div class="title__container title--sliding border-top border-bottom relative" ref="titleSection" :id="sectionID" v-if="isInitialized">
         <div class="title__wrapper" ref="titleSlider">
                 <h2 class="title">{{ title }}</h2>
                 <span class="title" v-for="n in 10" :key="n">{{ title }}</span>
@@ -23,22 +23,40 @@ const sectionID = computed( () => {
     return convertFunctions().convertStringToURL(title.value);
 });
 
-/* const title = ref('Works'); */
 const titleSlider = ref(null);
 const titleSection = ref(null);
+let scrollTriggerInstance = null;
+let tl = null;
 
-onMounted( async () => {
-    // wait for DOM elements to load
-    await nextTick();
+// wait for content and animation to load because the conflict between the two will cause an extreme speed for the animation
+const isInitialized = ref(false);
+
+const initAnimation = () => {
+    if (!title.value || tl || !titleSlider.value || !titleSection.value) 
+        return;
 
     // get all items with title 
     const items = titleSlider.value.querySelectorAll('.title');
+    if (!items || items.length === 0)
+        return;
+
+    if (tl) {
+        tl.clear();
+        tl.kill();
+        tl = null;
+    }
+    if (scrollTriggerInstance) {
+        scrollTriggerInstance.kill();
+        scrollTriggerInstance = null;
+    }
 
     // call horizontalLoop function inside utils/gsap
-    const tl = horizontalLoop(items, {
+    tl = horizontalLoop(items, {
         repeat: -1,
-        speed: 0.1
+        speed: 1
     }); 
+
+    tl.timeScale(1);
 
     // set parameters for direction
     let direction = 1;
@@ -51,6 +69,7 @@ onMounted( async () => {
 
         // when start/end is crossed, function update is executed
         onUpdate: (self) => {
+
             if (self.direction !== direction) {
 
                 direction = self.direction; // change current direction with scrolling direction
@@ -58,13 +77,40 @@ onMounted( async () => {
 
                 // create new animation
                 t = gsap.to(tl, {
-                    duration: 0.3,
+                    duration: 0.6,
                     timeScale: self.direction
                 });
 
             }
         }
-    })
+    });
+}
 
+onMounted( async () => {
+    // wait for DOM elements to load
+    await nextTick();
+
+    watchEffect(() => {
+        if (title.value) {
+            initAnimation();
+            isInitialized.value = true;
+        } 
+    });
+
+});
+
+onBeforeUnmount(() => {
+    if (tl && tl.isActive()) {
+        tl.clear();
+        tl.kill();
+        tl = null;
+    };
+
+    ScrollTrigger.getAll().forEach((st) => st.kill());
+
+    if (scrollTriggerInstance) {
+        scrollTriggerInstance.kill();
+        scrollTriggerInstance = null;
+    };
 });
 </script>
