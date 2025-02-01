@@ -1,16 +1,17 @@
 import { defineStore } from "pinia";
 import { fetchCollection } from "~/services/firebase";
 
-export const useContentStore = defineStore( 'content', () => { 
+export const useContentStore = defineStore('content', () => {
 
-    const general   = ref([]);
-    const home      = ref([]);
-    const projects  = ref([]);
-    const content   = ref([]);
+    const general = ref([]);
+    const home = ref([]);
+    const projects = ref([]);
+    const content = ref([]);
+    const project = ref({});
 
-    const lang      = ref('en');
+    const lang = ref('en');
 
-    onMounted( () => {
+    onMounted(() => {
         if (typeof localStorage !== 'undefined') {
             const storedLang = localStorage.getItem('lang');
             if (storedLang)
@@ -53,16 +54,22 @@ export const useContentStore = defineStore( 'content', () => {
         }
     };
 
-    const fetchProjectByName = async (projectName) => {
-        try {
-            console.log(projectName);
-            const response = await fetchCollection('projects');
-            console.log(response);
-        } catch (error) {
-            console.error('Impossible de récupérer le projet avec l\'ID suivant ' + projectName + ': ', error);
-            throw error;
+    const fetchProjectByName = (projectName) => {
+        const foundProject = projects.value.find(item => item.id === projectName);
+
+        if (!foundProject) {
+            useRouter().push('/');
+            return null;
         }
-    }
+
+        project.value = foundProject;
+        return foundProject;
+    };
+
+    const projectContent = computed(() => {
+        if (!project.value) return null;
+        return project.value[lang.value] || {};
+    });
 
     const fetchAllContent = async () => {
         try {
@@ -94,6 +101,8 @@ export const useContentStore = defineStore( 'content', () => {
         fetchProjectByName,
         fetchAllProjects,
         projects,
+        project,
+        projectContent,
         lang,
     }
 

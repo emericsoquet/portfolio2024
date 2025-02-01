@@ -11,11 +11,13 @@
         
                 <article class="summary md:col-span-7 xl:col-span-6 h-max" ref="articleRef">
                     <div class="summary__wrapper md:border-right mt-10 py-8 md:mt-0 md:pr-12 md:h-max lg:py-16">
-                        <h2 class="text-3xl font-light uppercase font-body mb-5 lg:text-5xl">Summary</h2>
+                        <h2 class="text-3xl font-light uppercase font-body mb-5 lg:text-5xl">{{title}}</h2>
                         <div class="summary__content content font-sub lg:text-lg lg:leading-8">
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam temporibus, nostrum animi modi cumque neque eum odio? Facere, corporis eaque consequuntur officia iste, dolorum quis soluta minus mollitia, molestiae laboriosam!</p>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nesciunt quidem obcaecati quisquam, optio quae.</p>
                         </div>
+
+                        {{ content }}
 
                         <NetworksList label="Voir le projet" extraClasses="hero__networks mt-10 py-0"></NetworksList>
                     </div>
@@ -40,6 +42,14 @@ import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
 
 gsap.registerPlugin(ScrollTrigger);
+
+const lang    = computed(() => useContentStore().lang);
+const content = computed(() => useContentStore().projectContent);
+
+const title = computed(() => {
+    if (!lang.value || lang.value == 'en') return 'Summary';
+    return 'Résumé';
+})
 
 const skills = reactive([
     'WordPress', 

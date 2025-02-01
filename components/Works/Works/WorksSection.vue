@@ -12,15 +12,5 @@
 
 <script setup>
 const works = computed(() => useContentStore().projects);
-
-/* const reversedWorksList = computed(() => {
-    const middleIndex = Math.ceil(works.value.length / 2);
-    return works.value.slice(0, middleIndex);
-});
-
-const worksList = computed(() => {
-    const middleIndex = Math.ceil(works.value.length / 2);
-    return works.value.slice(middleIndex);
-}); */
 </script>
 

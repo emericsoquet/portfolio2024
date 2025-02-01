@@ -14,11 +14,4 @@ const props = defineProps({
         required: true
     }
 });
-
-const coverURL = '/assets/media/projects/covers/'
-const imgURL = computed(() => {
-    if (!props.work) return null;
-
-    return props.work.id + '.png';
-})
 </script>

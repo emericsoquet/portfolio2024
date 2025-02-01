@@ -1,5 +1,6 @@
 <template>
     <main>
+        {{ content }}
         <BannerProject />
         <ContentProject />
     </main>
@@ -11,10 +12,13 @@ useHead({
         class: 'project-page'
     }
 });
-/* onBeforeUnmount(() => {
-    document.body.style.background = '';
+
+const slug    = useRoute().params.slug;
+const project = computed(() => useContentStore().projects);
+
+watchEffect(() => {
+    if (slug && project.value.length > 0)
+        useContentStore().fetchProjectByName(slug);
 });
-onBeforeMount(() => {
-    document.body.style.background = '';
-}); */
+
 </script>
