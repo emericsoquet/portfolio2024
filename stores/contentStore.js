@@ -53,6 +53,17 @@ export const useContentStore = defineStore( 'content', () => {
         }
     };
 
+    const fetchProjectByName = async (projectName) => {
+        try {
+            console.log(projectName);
+            const response = await fetchCollection('projects');
+            console.log(response);
+        } catch (error) {
+            console.error('Impossible de récupérer le projet avec l\'ID suivant ' + projectName + ': ', error);
+            throw error;
+        }
+    }
+
     const fetchAllContent = async () => {
         try {
             const response = await Promise.all([fetchGeneralContent(), fetchHomeContent(), fetchAllProjects()]);
@@ -80,6 +91,9 @@ export const useContentStore = defineStore( 'content', () => {
         getSharedGeneral,
         getChoosenHome,
         switchLanguage,
+        fetchProjectByName,
+        fetchAllProjects,
+        projects,
         lang,
     }
 

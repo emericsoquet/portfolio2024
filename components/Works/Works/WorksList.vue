@@ -3,7 +3,7 @@
                 ref="worksList"
                 @mouseenter="pauseScroll"
                 @mouseleave="playScroll">
-        <WorkItem :key="n" v-for="n in 10"></WorkItem>
+        <WorkItem :key="i" v-for="(item, i) in list" :work="item"></WorkItem>
     </section>
 </template>
 
@@ -17,6 +17,10 @@ const props = defineProps({
     reversed: {
         type: Boolean,
         required: false
+    },
+    list: {
+        type: Array,
+        required: true
     }
 });
 
@@ -31,16 +35,22 @@ const playScroll = () => {
     }
 }
 
-onMounted( async() => {
-    await nextTick();
-
-    const items = worksList.value.querySelectorAll('.work');
-    
-    tl = horizontalLoop(items, {
-        repeat: -1,
-        speed: props.speed || 0.75,
-        reversed: props.reversed,
-    }); 
-
-})
+watch(
+    () => props.list,
+    (newList) => {
+        if (newList.length > 0) {
+            nextTick(() => {
+                const items = worksList.value.querySelectorAll('.work');
+                if (items.length > 0) {
+                    tl = horizontalLoop(items, {
+                        repeat: -1,
+                        speed: props.speed || 0.75,
+                        reversed: props.reversed,
+                    });
+                }
+            });
+        }
+    },
+    { immediate: true }
+);
 </script>
