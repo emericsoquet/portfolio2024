@@ -17,7 +17,7 @@
                     {{ content?.situation }}
                 </p>
     
-                <NetworksList extraClasses="hero__networks"></NetworksList>
+                <NetworksList extraClasses="hero__networks" :label="networksLabel" :networksList="networksList"></NetworksList>
     
             </div>
         </div>
@@ -26,5 +26,27 @@
 </template>
 
 <script setup>
-const content = computed( () => useContentStore().getChoosenHome.hero );
+const content = computed(() => useContentStore().getChoosenHome.hero);
+
+const networksLabel  = computed( () => useContentStore().getChoosenGeneral?.networks?.label );
+const networks = computed( () => useContentStore().getSharedGeneral.networks );
+
+const networksList = computed( () => {
+
+    if(!networks.value)
+        return [];
+
+    return networks.value.map( network => {
+
+        let alt = 'Logo de ' + network.label;
+        if(useContentStore().lang === 'en')
+            alt = 'Logo of ';
+
+        return {
+            logoAlt: alt,
+            ...network
+        }
+    });
+
+});
 </script>

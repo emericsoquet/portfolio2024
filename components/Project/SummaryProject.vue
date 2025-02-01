@@ -5,7 +5,7 @@
             <div class="grid md:grid-cols-12 md:relative">
                 <div class="project__cover md:order-last md:col-span-5 xl:col-span-6 md:px-5 lg:px-8" ref="coverRef">
                     <div class="cover__wrapper max-w-xl relative h-full overflow-y-clip">
-                        <img src="/media/img/projects/bpp/bpp-cover.png" alt="" class=" block w-full md:sticky md:top-8" ref="imgRef">
+                        <img src="" alt="" class=" block w-full md:sticky md:top-8" ref="imgRef">
                     </div>
                 </div>
         
@@ -16,6 +16,8 @@
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam temporibus, nostrum animi modi cumque neque eum odio? Facere, corporis eaque consequuntur officia iste, dolorum quis soluta minus mollitia, molestiae laboriosam!</p>
                             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Est nesciunt quidem obcaecati quisquam, optio quae.</p>
                         </div>
+
+                        <NetworksList label="Voir le projet" extraClasses="hero__networks mt-10 py-0"></NetworksList>
                     </div>
 
                     <template v-if="isDesktop">

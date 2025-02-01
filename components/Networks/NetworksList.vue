@@ -2,7 +2,7 @@
 
 <template>
     <div :class="`${extraClasses} networks pl-5 pr-4 py-3 w-max flex items-center`">
-        <p class="font-heading font-semibold tracking-wider mr-10 md:text-lg">{{ networksLabel  }}</p>
+        <p class="font-heading font-semibold tracking-wider mr-10 md:text-lg">{{ label }}</p>
         <div class="networks__list flex gap-2">
             <a  v-for="(network, i) in networksList"
                 :key="i"
@@ -22,29 +22,15 @@ const props = defineProps({
     extraClasses: {
         type: String,
         required: false
+    },
+    networksList: {
+        type: Object,
+        required: true
+    },
+    label: {
+        type: String,
+        required: true
     }
-});
-
-const networksLabel  = computed( () => useContentStore().getChoosenGeneral?.networks?.label );
-const networks = computed( () => useContentStore().getSharedGeneral.networks );
-
-const networksList = computed( () => {
-
-    if(!networks.value)
-        return [];
-
-    return networks.value.map( network => {
-
-        let alt = 'Logo de ' + network.label;
-        if(useContentStore().lang === 'en')
-            alt = 'Logo of ';
-
-        return {
-            logoAlt: alt,
-            ...network
-        }
-    });
-
 });
 
 </script>

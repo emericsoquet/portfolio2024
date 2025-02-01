@@ -1,7 +1,7 @@
 <template>
     <footer class="footer mt-20 pb-10 container flex flex-wrap justify-end" ref="footer">
 
-        <NetworksList extraClasses="footer__cell lg:flex-1 lg:border-r-0"></NetworksList>
+        <NetworksList extraClasses="footer__cell lg:flex-1 lg:border-r-0" :networksList="networksList" :label="networksLabel" />
 
         <div class="footer__cell xs:flex-1 xs:border-r-0 lg:justify-center">
             <p class="font-heading uppercase" v-html="iconsCredits"></p>
@@ -54,6 +54,28 @@ onMounted( () => {
     onUnmounted( () => {
         window.removeEventListener('scroll', handleScroll);
     })
+
+});
+
+const networksLabel  = computed( () => useContentStore().getChoosenGeneral?.networks?.label );
+const networks = computed( () => useContentStore().getSharedGeneral.networks );
+
+const networksList = computed( () => {
+
+    if(!networks.value)
+        return [];
+
+    return networks.value.map( network => {
+
+        let alt = 'Logo de ' + network.label;
+        if(useContentStore().lang === 'en')
+            alt = 'Logo of ';
+
+        return {
+            logoAlt: alt,
+            ...network
+        }
+    });
 
 });
 </script>
