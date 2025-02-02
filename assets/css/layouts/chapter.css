@@ -1,0 +1,17 @@
+.chapter {
+
+    line-height: 1.75;
+
+    ul {
+        li {
+            &::before {
+                content: '-';
+                padding-right: 0.5rem;
+            }
+        }
+    }
+
+    strong {
+        font-weight: 700;
+    }
+}

@@ -1,10 +1,13 @@
 <template>
     <section class="container">
-        <ChapterProject v-for="(item, title) in chapters" :chapter="item" :key="title" :title="title" />
+        <!-- {{ chapters }} -->
+        <ChapterProject v-for="(item, i) in chapters" :chapter="item" :key="i" />
     </section>
 </template>
 
 <script setup>
+const chapters = computed(() => useContentStore().projectContent.content );
+/* 
 const chapters = reactive({
     'Difficulties': {
         content: `
@@ -22,5 +25,5 @@ const chapters = reactive({
             <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Amet, explicabo!</p>
         `,
     }
-})
+}) */
 </script>

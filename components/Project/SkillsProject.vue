@@ -10,10 +10,5 @@
 </template>
 
 <script setup>
-const props = defineProps({
-    skills: {
-        type: Array,
-        required: true
-    }
-})
+const skills = computed(() => useContentStore().project.technos || [] );
 </script>
