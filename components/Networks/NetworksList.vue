@@ -8,16 +8,13 @@
                 :key="i"
                 :class="`network cursor-pointer bg-base bg-opacity-20 aspect-square w-8 rounded-md flex items-center justify-center ${ network.label === 'GitHub' ? 'p-1.5' : 'p-2' }`"
                 :href="network.url">
-                <img :src="network.logo" :alt="network.logoAlt" class="cursor-pointer">
+                <img :src="network?.logoSrc" :alt="network?.logoAlt" class="cursor-pointer">
             </a>
         </div>
     </div>
 </template>
 
 <script setup>
-import LinkedInLogo from '~/assets/media/logo/linkedin-logo.svg';
-import GitHubLogo   from '~/assets/media/logo/github-logo.svg';
-
 const props = defineProps({
     extraClasses: {
         type: String,

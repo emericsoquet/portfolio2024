@@ -26,6 +26,10 @@
 </template>
 
 <script setup>
+import LinkedInLogo from '~/assets/media/logo/linkedin-logo.svg';
+import GitHubLogo from '~/assets/media/logo/github-logo.svg';
+import LinkIcon from '~/assets/media/icons/icon-link.svg';
+
 const content = computed(() => useContentStore().getChoosenHome.hero);
 
 const networksLabel  = computed( () => useContentStore().getChoosenGeneral?.networks?.label );
@@ -36,14 +40,29 @@ const networksList = computed( () => {
     if(!networks.value)
         return [];
 
-    return networks.value.map( network => {
+    return networks.value.map(network => {
 
-        let alt = 'Logo de ' + network.label;
+        console.log(network.label)
+
+        let imgSrc;
+        switch (network?.label) {
+            case 'LinkedIn':
+                imgSrc = LinkedInLogo;
+                break;
+            case 'GitHub':
+                imgSrc = GitHubLogo;
+                break;
+            default:
+                imgSrc = LinkIcon;
+        }
+
+        let alt = 'Logo de '
         if(useContentStore().lang === 'en')
             alt = 'Logo of ';
 
         return {
-            logoAlt: alt,
+            logoAlt: alt + network.label,
+            logoSrc: imgSrc,
             ...network
         }
     });
