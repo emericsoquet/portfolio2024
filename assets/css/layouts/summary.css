@@ -60,3 +60,15 @@
         @apply mt-20;
     }
 }
+
+.summary__networks {
+    border-color: var(--border-color);
+    border-radius: 0;
+    p {
+        margin-right: 1em;
+    }
+    .network {
+        background: none;
+        border: 1px solid var(--border-color);
+    }
+}

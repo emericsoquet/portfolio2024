@@ -16,7 +16,7 @@
                             {{ content?.summary }}
                         </div>
 
-                        <NetworksList :label="linksLabel" extraClasses="hero__networks mt-16 py-0"></NetworksList>
+                        <NetworksList :label="linksLabel" extraClasses="hero__networks summary__networks mt-16 py-0" :networksList="networksList" />
                     </div>
 
                     <template v-if="isDesktop">
@@ -37,6 +37,10 @@
 <script setup>
 import { gsap } from 'gsap';
 import ScrollTrigger from 'gsap/ScrollTrigger';
+
+import LinkedInLogo from '~/assets/media/logo/linkedin-logo.svg';
+import GitHubLogo from '~/assets/media/logo/github-logo.svg';
+import LinkIcon from '~/assets/media/icons/icon-link.svg';
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -133,6 +137,46 @@ onMounted(async () => {
 onUnmounted(() => {
     window.removeEventListener('resize', handleResize);
     ScrollTrigger.getAll().forEach(trigger => trigger.kill());
+});
+
+
+const networks = computed(() => {
+    if (project.value)
+        return project.value.networksList;
+} );
+
+const networksList = computed( () => {
+
+    if(!networks.value)
+        return [];
+
+    return networks.value.map(network => {
+
+        console.log(network.label)
+
+        let imgSrc;
+        switch (network?.label) {
+            case 'LinkedIn':
+                imgSrc = LinkedInLogo;
+                break;
+            case 'GitHub':
+                imgSrc = GitHubLogo;
+                break;
+            default:
+                imgSrc = LinkIcon;
+        }
+
+        let alt = 'Logo de '
+        if(useContentStore().lang === 'en')
+            alt = 'Logo of ';
+
+        return {
+            logoAlt: alt + network.label,
+            logoSrc: imgSrc,
+            ...network
+        }
+    });
+
 });
 
 </script>
