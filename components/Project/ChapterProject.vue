@@ -4,8 +4,8 @@
             <h2 class="text-3xl font-light uppercase font-body mb-5 lg:text-5xl">{{ chapter?.title }}</h2>
             <div v-html="chapter?.text"></div>
         </div>
-        <figure class="chapter__img h-max md:col-span-5 xl:col-span-6 sticky top-8 md:mx-5 lg:mx-8 my-10 md:my-0 rounded max-w-xl" v-if="chapter.img">
-            <img :src="chapter?.img" :alt="chapter.alt" class="block w-full">
+        <figure class="chapter__img h-max md:col-span-5 xl:col-span-6 sticky top-8 md:mx-5 lg:mx-8 my-10 md:my-0 rounded max-w-xl" v-if="chapter?.img">
+            <img :src="`/media/img/projects/${project?.id}/chapters/${chapter?.img}`" :alt="chapter?.alt" class="block w-full">
         </figure>
     </article>
 
@@ -16,12 +16,9 @@ const props = defineProps({
     chapter: {
         type: Object,
         required: true
-    },
-    title: {
-        type: String,
-        required: true
     }
 });
 
+const project = computed(() => useContentStore().project);
 </script>
 

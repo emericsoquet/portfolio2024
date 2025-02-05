@@ -4,8 +4,8 @@
         <div class="container">
             <div class="grid md:grid-cols-12 md:relative">
                 <div class="project__cover md:order-last md:col-span-5 xl:col-span-6 md:px-5 lg:px-8" ref="coverRef">
-                    <div class="cover__wrapper max-w-xl relative h-full overflow-y-clip">
-                        <img :src="`/media/img/projects/${project?.id}/featured.webp`" alt="" class=" block w-full md:sticky md:top-8" ref="imgRef">
+                    <div class="cover__wrapper max-w-xl relative h-full overflow-y-clip" v-if="isReady">
+                        <img :src="`/media/img/projects/${project?.id}/featured.webp`" :alt="alt" class=" block w-full md:sticky md:top-8" ref="imgRef">
                     </div>
                 </div>
         
@@ -52,6 +52,10 @@ const linksLabel = computed(() => {
     if (!lang.value || lang.value == 'en') return 'See project';
     return 'Voir le projet';
 });
+const alt = computed(() => {
+    if (!lang.value || lang.value == 'en') return `Brief navigation on the project`;
+    return 'Navigation rapide sur le projet';
+})
 
 const skills = reactive([
     'WordPress', 
@@ -62,6 +66,9 @@ const skills = reactive([
 
 const isClient = ref(false);
 const isDesktop = ref(null);
+const isReady = computed(() => {
+    return (!project.value || !content.value) ? false : true;
+})
 
 // references in the DOM for both columns
 const articleRef = ref(null);
@@ -76,13 +83,16 @@ const handleResize = async () => {
     const coverHeight   = imgRef.value.getBoundingClientRect().height;
     const articleHeight = articleRef.value.getBoundingClientRect().height;
 
-    if(isDesktop.value) {
+
+
+    if(isDesktop.value && isReady.value) {
         if (coverHeight > articleHeight) {
             if (coverRef.value.style.maxHeight !== articleHeight + 'px') {
                 coverRef.value.style.maxHeight = articleHeight + 'px';
             }
             initParallaxEffect(coverRef.value, imgRef.value, articleHeight);
         } else {
+            console.log('bonjour')
             if (coverRef.value.style.maxHeight !== 'none') {
                 coverRef.value.style.maxHeight = 'none';
             }
@@ -113,7 +123,7 @@ const initParallaxEffect = (cover, image, maxHeight) => {
     }
 };
 
-onMounted(() => {
+onMounted(async () => {
     handleResize();
     window.addEventListener('resize', handleResize);
 
