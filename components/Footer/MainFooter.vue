@@ -71,8 +71,6 @@ const networksList = computed( () => {
 
     return networks.value.map(network => {
 
-        console.log(network.label)
-
         let imgSrc;
         switch (network?.label) {
             case 'LinkedIn':

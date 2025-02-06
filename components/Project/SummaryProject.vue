@@ -96,7 +96,6 @@ const handleResize = async () => {
             }
             initParallaxEffect(coverRef.value, imgRef.value, articleHeight);
         } else {
-            console.log('bonjour')
             if (coverRef.value.style.maxHeight !== 'none') {
                 coverRef.value.style.maxHeight = 'none';
             }
@@ -151,8 +150,6 @@ const networksList = computed( () => {
         return [];
 
     return networks.value.map(network => {
-
-        console.log(network.label)
 
         let imgSrc;
         switch (network?.label) {

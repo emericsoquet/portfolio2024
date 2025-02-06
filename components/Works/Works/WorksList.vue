@@ -35,22 +35,20 @@ const playScroll = () => {
     }
 }
 
-watch(
-    () => props.list,
-    (newList) => {
-        if (newList.length > 0) {
-            nextTick(() => {
-                const items = worksList.value.querySelectorAll('.work');
-                if (items.length > 0) {
-                    tl = horizontalLoop(items, {
-                        repeat: -1,
-                        speed: props.speed || 0.75,
-                        reversed: props.reversed,
-                    });
-                }
+watchEffect(async () => {
+    if (props.list.length > 0 && worksList.value) {
+        await nextTick(); // Attendre que le DOM soit mis à jour
+
+        const items = worksList.value.querySelectorAll('.work');
+        if (items.length > 0) {
+            if (tl) tl.kill(); // Nettoyer l'ancienne animation si elle existe
+
+            tl = horizontalLoop(items, {
+                repeat: -1,
+                speed: props.speed,
+                reversed: props.reversed,
             });
         }
-    },
-    { immediate: true }
-);
+    }
+});
 </script>
