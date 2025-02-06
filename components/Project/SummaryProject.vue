@@ -5,7 +5,7 @@
             <div class="grid md:grid-cols-12 md:relative">
                 <div class="project__cover md:order-last md:col-span-5 xl:col-span-6 md:px-5 lg:px-8" ref="coverRef">
                     <div class="cover__wrapper max-w-xl relative h-full overflow-y-clip" v-if="isReady">
-                        <img :src="`/media/img/projects/${project?.id}/featured.webp`" :alt="alt" class=" block w-full md:sticky md:top-8" ref="imgRef">
+                        <img :src="`/media/img/projects/${project?.id}/featured.webp`" :alt="alt" class=" block w-full md:sticky md:top-8" ref="imgRef" @load="handleResize">
                     </div>
                 </div>
         
@@ -83,24 +83,28 @@ const handleResize = async () => {
     isDesktop.value = window.innerWidth >= 768;
 
     await nextTick();
-    
-    const coverHeight   = imgRef.value.getBoundingClientRect().height;
-    const articleHeight = articleRef.value.getBoundingClientRect().height;
 
+    requestAnimationFrame(() => {
 
+        if (!imgRef.value || !articleRef.value || !coverRef.value) return;
 
-    if(isDesktop.value && isReady.value) {
-        if (coverHeight > articleHeight) {
-            if (coverRef.value.style.maxHeight !== articleHeight + 'px') {
-                coverRef.value.style.maxHeight = articleHeight + 'px';
-            }
-            initParallaxEffect(coverRef.value, imgRef.value, articleHeight);
-        } else {
-            if (coverRef.value.style.maxHeight !== 'none') {
-                coverRef.value.style.maxHeight = 'none';
+        const coverHeight   = imgRef.value.getBoundingClientRect().height;
+        const articleHeight = articleRef.value.getBoundingClientRect().height;
+
+        if(isDesktop.value && isReady.value) {
+            if (coverHeight > articleHeight) {
+                if (coverRef.value.style.maxHeight !== articleHeight + 'px') {
+                    coverRef.value.style.maxHeight = articleHeight + 'px';
+                }
+                initParallaxEffect(coverRef.value, imgRef.value, articleHeight);
+            } else {
+                if (coverRef.value.style.maxHeight !== 'none') {
+                    coverRef.value.style.maxHeight = 'none';
+                }
             }
         }
-    }
+
+    });
 
 };
 
