@@ -1,0 +1,23 @@
+.accordion {
+
+    .accordion__item {
+        @apply relative;
+
+        h3 {
+            font-size: clamp(26px, 7.5vw, 70px);
+        }
+
+        &::before {
+            content: '';
+            display: block;
+            @apply bg-border;
+            @apply absolute;
+            height: 1px;
+            top: 0;
+
+            left: -100vw;
+            right: -100vw;
+            z-index: 0;
+        }
+    }
+}

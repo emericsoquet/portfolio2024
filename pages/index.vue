@@ -6,6 +6,7 @@
         <ResumeSection></ResumeSection>
         <SkillsList></SkillsList>
         <WorksSection></WorksSection>
+        <AccordionSection></AccordionSection>
         <ContactSection></ContactSection>
     </main>
 </template>

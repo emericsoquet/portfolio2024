@@ -8,6 +8,7 @@ export default defineNuxtConfig({
     ],
     plugins: [
       '~/plugins/firebase',
+      '~/plugins/recaptcha'
     ],
     imports: {
       autoImport: true,
