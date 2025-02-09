@@ -12,6 +12,7 @@
                 :validate="validateField"
                 v-model="form[field.name]"
             />
+            <input type="text" name="_gotcha" style="display: none;">
         </fieldset>
 
         <fieldset class="md:flex md:flex-row-reverse md:items-center">
@@ -39,6 +40,9 @@
 <script setup>
 import { validatorsList } from '~/utils/forms/validators';
 import { ref, reactive, computed, watch, onMounted } from 'vue';
+import { useReCaptcha } from 'vue-recaptcha-v3';
+
+const { executeRecaptcha } = useReCaptcha();
 
 const formMessage = ref('');
 const isFormValid = ref(true);
@@ -132,7 +136,7 @@ const validateField = (fieldName) => {
 };
 
 // submission of the form when submit button is clicked
-const handleForm = () => {
+const handleForm = async () => {
     isFormValid.value = true;
 
     fields.value.forEach(field => {
@@ -146,6 +150,60 @@ const handleForm = () => {
         return;
     }
 
-    formMessage.value = content?.value?.form?.successMessage || 'Your message has been sent. Thank you!';
+    await sendEmail();
+
+    /* formMessage.value = content?.value?.form?.successMessage || 'Your message has been sent. Thank you!'; */
+};
+
+const sendEmail = async () => {
+
+    console.log('sending...');
+    console.log(form);
+
+    try {
+
+        const recaptchaToken = await executeRecaptcha('contact_form');
+        console.log("reCAPTCHA Token:", recaptchaToken); // Vérification dans la console
+
+        const honeypot = document.querySelector('input[name="_gotcha"]').value;
+        if (honeypot !== "") {
+            console.warn("Spam bot détecté ! Envoi bloqué.");
+            formMessage.value = "Spam détecté. Envoi bloqué.";
+            return;
+        }
+
+        const response = await fetch("https://formspree.io/f/xwpvqylj", {
+            method: "POST",
+            headers: {
+                "Accept": "application/json",
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                ...form,
+                "_gotcha": honeypot
+                /* "_recaptcha": recaptchaToken,
+                "_custom_key": '6Lek1tEqAAAAAExq2mscH-6AyE-LC2TZH0_SAgTL' */
+            }),
+        });
+
+        console.log(response.body)
+
+        if (!response.ok) {
+            const errorResponse = await response.json();
+            console.error('FormSpree error:', errorResponse);
+            throw new Error("Failed to send email");
+        }
+
+        formMessage.value = content?.value?.form?.successMessage || "Your message has been sent. Thank you!";
+        
+        // Réinitialiser le formulaire après envoi
+        Object.keys(form).forEach(key => {
+            form[key] = "";
+        });
+
+    } catch (error) {
+        formMessage.value = content?.value?.form?.networkError || 'A network error has occured. Please retry later.';
+        console.error("Email sending error:", error);
+    }
 };
 </script>

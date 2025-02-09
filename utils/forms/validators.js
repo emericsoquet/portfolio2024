@@ -6,7 +6,7 @@ export const validatorsList = (content = null) => {
     });
 
     const charsTest = () => ({
-        validationTest: (value) => /^[a-zA-Z\s]+$/.test(value),
+        validationTest: (value) => /^[\p{L}\s-]+$/u.test(value),
         errorMessage: content?.chars || 'This field must only contain letters and spaces',
     });
     
