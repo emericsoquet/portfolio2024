@@ -167,8 +167,8 @@ const sendEmail = async () => {
 
         const honeypot = document.querySelector('input[name="_gotcha"]').value;
         if (honeypot !== "") {
-            console.warn("Spam bot détecté ! Envoi bloqué.");
-            formMessage.value = "Spam détecté. Envoi bloqué.";
+            console.warn(content?.value?.form?.networkError);
+            formMessage.value = content?.value?.form?.networkError || 'A network error has occured. Please retry later.';
             return;
         }
 
@@ -181,8 +181,6 @@ const sendEmail = async () => {
             body: JSON.stringify({
                 ...form,
                 "_gotcha": honeypot
-                /* "_recaptcha": recaptchaToken,
-                "_custom_key": '6Lek1tEqAAAAAExq2mscH-6AyE-LC2TZH0_SAgTL' */
             }),
         });
 
