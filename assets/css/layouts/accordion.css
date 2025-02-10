@@ -17,7 +17,7 @@
 
             left: -100vw;
             right: -100vw;
-            z-index: 0;
+            z-index: -2;
         }
     }
 }

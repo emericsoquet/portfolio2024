@@ -1,6 +1,8 @@
 <template>
-    <NuxtLink :to="`/project/${ project?.id }`" class="accordion__item cursor-pointer py-10 px-4 block">
-        <div class="container flex items-start flex-col ">
+    <NuxtLink   :to="`/project/${ project?.id }`" 
+                class="accordion__item py-10 px-4 block z-1" 
+    >
+        <div class="container flex items-start flex-col pointer-events-none">
             <span class="text-lg lg:text-xl pb-8 tracking-[1px] font-semibold underline underline-offset-8">{{ projectDate }}</span>
             <h3 class="uppercase font-heading font-semibold leading-[0.85] z-[1] w-full block tracking-[-4px]">{{  project.title }}</h3>
         </div>

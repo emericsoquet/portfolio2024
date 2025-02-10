@@ -1,8 +1,8 @@
 <template>
-    <article :class="`accordion__preview work fixed top-[-150px] ml-[calc(-533px/2)] z-1 ${ !!activeProject ? 'visible opacity-1' : 'invisible opacity-0' }`" ref="previewRef">
+    <article :class="`accordion__preview work fixed top-[-150px] ml-[calc(-533px/2)] z-[-1] ${ !!activeProject ? 'visible opacity-1' : 'invisible opacity-0' }`" ref="previewRef">
         <figure class="flex items-center justify-center aspect-video rounded-lg h-[300px]">
-            <img src="../../public/media/img/projects/bistrots-pas-parisiens/cover.webp" alt="" ref="currentImg" class="absolute">
-            <img src="../../public/media/img/projects/eduka/cover.webp" alt="" ref="newImg" class="absolute">
+            <img :src="`/media/img/projects/${ activeProject?.id }/cover.webp`" :alt="`${altLabel} ${activeProject?.title }`" ref="currentImg" class="absolute">
+            <img src="../../public/media/img/projects/eduka/cover.webp" :alt="`${altLabel} ${activeProject?.title }`" ref="newImg" class="absolute">
         </figure>
     </article>
 </template>
@@ -14,6 +14,13 @@ const props = defineProps({
         required: false,
     }
 });
+
+const lang = computed(() => useContentStore().lang);
+
+const altLabel = computed(() => {
+    if (lang.value == 'fr') return 'Preview of the project called';
+    return 'Prévisualisation du projet'
+})
 
 const previewRef = ref(null);
 

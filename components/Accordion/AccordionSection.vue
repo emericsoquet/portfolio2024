@@ -3,8 +3,8 @@
         <div class="accordion__list">
             <AccordionItem  v-for="(item, i) in sortedProjects" 
                             :key="i" :project="item"
-                            @mouseenter="handleMouseEnter(item)"
-                            @mouseleave="handleMouseLeave"
+                            @mouseenter.stop="handleMouseEnter(item)"
+                            @mouseleave.stop="handleMouseLeave"
             />
         </div>
         <AccordionPreview :activeProject="activeProject" />
