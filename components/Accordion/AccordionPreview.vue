@@ -1,9 +1,10 @@
 <template>
     <article :class="`accordion__preview work fixed top-[-150px] ml-[calc(-533px/2)] z-[-1] ${ !!activeProject ? 'visible opacity-1' : 'invisible opacity-0' }`" ref="previewRef">
         <figure class="flex items-center justify-center aspect-video rounded-lg h-[300px]">
-            <img :src="`/media/img/projects/${ activeProject?.id }/cover.webp`" :alt="`${altLabel} ${activeProject?.title }`" ref="currentImg" class="absolute">
-            <img src="../../public/media/img/projects/eduka/cover.webp" :alt="`${altLabel} ${activeProject?.title }`" ref="newImg" class="absolute">
+            <img :src="`/media/img/projects/${ activeProject?.id }/cover.webp`" :alt="`${altLabel} ${activeProject?.title }`" ref="newImg" class="absolute">
+            <img :src="`/media/img/projects/${ previousProject?.id }/cover.webp`" :alt="`${altLabel} ${previousProject?.title }`" ref="currentImg" class="absolute">
         </figure>
+        <figcaption>{{ previousProject }}</figcaption>
     </article>
 </template>
 
@@ -20,9 +21,32 @@ const lang = computed(() => useContentStore().lang);
 const altLabel = computed(() => {
     if (lang.value == 'fr') return 'Preview of the project called';
     return 'Prévisualisation du projet'
-})
+});
 
 const previewRef = ref(null);
+const previousProject = ref(null);
+const currentImg = ref(null);
+const newImg = ref(null);
+
+watch(() =>
+    props.activeProject,
+    async (_, oldProject) => {
+        if (!oldProject || !currentImg.value) return;
+
+        // reinitialize position before any transition playing
+        currentImg.value.style.transition = 'none'; 
+        currentImg.value.style.transform = 'translateY(0px)'; 
+
+        previousProject.value = oldProject;
+
+        await nextTick();
+
+        requestAnimationFrame(() => {
+            currentImg.value.style.transition = 'transform 0.3s ease-out';
+            currentImg.value.style.transform = 'translateY(-100%)';
+        });
+    }
+);
 
 let cursorX = 0;
 let cursorY = 0;
@@ -55,3 +79,9 @@ onUnmounted(() => {
     window.removeEventListener("mousemove", animatePreview);
 });
 </script>
+
+<style scoped>
+img {
+    transition: all .5s;
+}
+</style>
