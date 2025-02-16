@@ -1,5 +1,5 @@
 <template>
-    <section class="accordion my-28 lg:my-28 relative z-0">
+    <section class="accordion my-16 relative z-0">
         <div class="accordion__list">
             <AccordionItem  v-for="(item, i) in sortedProjects" 
                             :key="i" :project="item"

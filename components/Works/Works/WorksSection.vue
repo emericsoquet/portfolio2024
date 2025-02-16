@@ -3,7 +3,7 @@
         <SlidingTitle></SlidingTitle>
 
         <article class="works__slider">
-            <WorksList :reversed="true" :list="works"></WorksList>
+            <!-- <WorksList :reversed="true" :list="works"></WorksList> -->
             <WorksList :list="works"></WorksList>
         </article>
 

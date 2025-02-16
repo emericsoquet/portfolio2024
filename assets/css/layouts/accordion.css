@@ -4,7 +4,7 @@
         @apply relative;
 
         h3 {
-            font-size: clamp(26px, 7.5vw, 70px);
+            font-size: clamp(45px, 7.5vw, 70px);
             overflow: hidden;
         }
 
@@ -21,11 +21,19 @@
             z-index: -2;
         }
 
+        &:first-child {
+            &::before {
+                display: none;
+            }
+        }
+
         .accordion__title {
             display: block;
             transition: all .3s ease-in-out;
             transform-origin: left;
-            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            &:not(.accordion__title--outline) {
+                clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+            }
         }
 
         &:hover {
