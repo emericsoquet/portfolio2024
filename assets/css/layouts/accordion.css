@@ -5,6 +5,7 @@
 
         h3 {
             font-size: clamp(26px, 7.5vw, 70px);
+            overflow: hidden;
         }
 
         &::before {
@@ -19,5 +20,25 @@
             right: -100vw;
             z-index: -2;
         }
+
+        .accordion__title {
+            display: block;
+            transition: all .3s ease-in-out;
+            transform-origin: left;
+            clip-path: polygon(0 0, 100% 0, 100% 100%, 0% 100%);
+        }
+
+        &:hover {
+            .accordion__title:not(.accordion__title--outline) {
+                clip-path: polygon(0 0, 0 0, 0 100%, 0% 100%);
+            }
+        }
     }
+
+    .accordion__title--outline {
+        color: transparent;
+        -webkit-text-stroke-width: 1px;
+        -webkit-text-stroke-color: white;
+    }
+
 }

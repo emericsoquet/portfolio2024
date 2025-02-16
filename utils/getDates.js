@@ -6,7 +6,6 @@ export const getDates = () => {
     
     const getYear = date => {
         const convertedDate = convertDate(date);
-        console.log(convertedDate)
         return convertedDate.getFullYear();
     }
 

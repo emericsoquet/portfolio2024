@@ -16,11 +16,14 @@ const projects = computed(() => useContentStore().projects);
 const sortedProjects = computed(() => {
     if (!projects.value) return {};
 
-    return projects.value.sort((a, b) => b.date - a.date);
-})
+    return [...projects.value]
+        .sort((a, b) => b.date - a.date)
+        .map((item, i) => ({ key: i, ...item }));
+});
 
 const activeProject = ref(null);
-const handleMouseEnter = project => {
+
+const handleMouseEnter = (project) => {
     activeProject.value = project;
 }
 const handleMouseLeave = () => {
