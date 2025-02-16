@@ -1,7 +1,9 @@
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
-export default defineNuxtPlugin(() => {
+export default defineNuxtPlugin((nuxtApp) => {
+
+    if (!process.client) return;
 
     const config = useRuntimeConfig();
 
@@ -16,11 +18,7 @@ export default defineNuxtPlugin(() => {
 
     const firebaseApp = initializeApp(firebaseConfig);
     const firestore = getFirestore(firebaseApp);
-    return {
-        provide: {
-            firebaseApp,
-            firestore
-        }
-    };
+
+    nuxtApp.provide("firestore", firestore);
     
 });
