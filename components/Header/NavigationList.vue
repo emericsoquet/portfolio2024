@@ -4,7 +4,7 @@
             <li v-if="route.path !== '/'" class="nav__item">
                 <a @click="goHome"
                    class="md:px-2 py-1 block md:mx-2 text-lg font-heading cursor-pointer">
-                    Home
+                    {{ homeLabel }}
                 </a>
             </li>
             <template v-else>
@@ -25,9 +25,15 @@
 <script setup>
 const contentStore = useContentStore();
 const navigation = computed(() => contentStore.getChoosenGeneral.navigation);
+const lang = computed(() => contentStore.lang );
 
 const route  = useRoute();
 const router = useRouter();
+
+const homeLabel = computed(() => {
+    if (lang.value == 'fr') return 'Accueil';
+    return 'Home';
+})
 
 const newNavigation = computed(() => {
     return navigation.value
