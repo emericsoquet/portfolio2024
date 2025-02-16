@@ -25,3 +25,4 @@ logs
 
 copyDocument.js
 serviceAccountKey.json
+.vercel
