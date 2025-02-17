@@ -42,5 +42,14 @@ export default defineNuxtConfig({
     },
     runtimeConfig: {
       public: process.env,
-    },
+  },
+    nitro: {
+      routeRules: {
+        '/**': {
+          headers: {
+            'Permissions-Policy': 'camera=(), microphone=(), geolocation=()' // Retire `browsing-topics`
+          }
+        }
+      }
+  }
 })
