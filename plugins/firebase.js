@@ -17,11 +17,7 @@ export default defineNuxtPlugin((nuxtApp) => {
     };
 
     const firebaseApp = initializeApp(firebaseConfig);
-
-    // force firestore to use REST rathan than WebChannel
-    const firestore = initializeFirestore(firebaseApp, {
-        experimentalForceLongPolling: true
-    });
+    const firestore = getFirestore(firebaseApp);
 
     nuxtApp.provide("firestore", firestore);
     
