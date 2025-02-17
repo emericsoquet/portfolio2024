@@ -1,15 +1,15 @@
 import { collection, getDocs } from "firebase/firestore";
 
 export const fetchCollection = async (collectionName) => {
-    const firestore = useNuxtApp().$firestore;
+    const { $firestore } = useNuxtApp();
 
-    if (!firestore) {
-        console.error("Firestore n'est pas initialisé !");
+    if (!process.client || !$firestore) {
+        console.error("Firestore n'est pas accessible côté serveur !");
         return [];
     }
 
     try {
-        const querySnapshot = await getDocs(collection(firestore, collectionName));
+        const querySnapshot = await getDocs(collection($firestore, collectionName));
         return querySnapshot.docs.map((doc) => ({
             id: doc.id,
             ...doc.data()
