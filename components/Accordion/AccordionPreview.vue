@@ -1,8 +1,19 @@
 <template>
     <article :class="`accordion__preview work fixed top-[-150px] ml-[calc(-533px/2)] z-[-1] ${ !!activeProject ? 'visible opacity-1' : 'invisible opacity-0' }`" ref="previewRef">
         <figure class="flex items-center justify-center aspect-video rounded-lg h-[300px]">
-            <img :src="`/media/img/projects/${ activeProject?.id }/cover.webp`" :alt="`${altLabel} ${activeProject?.title }`" ref="newImg" class="absolute">
-            <img :src="`/media/img/projects/${ previousProject?.id }/cover.webp`" :alt="`${altLabel} ${previousProject?.title }`" ref="currentImg" class="absolute" v-show="previousProject">
+            <img 
+                :src="activeProject ? `/media/img/projects/${activeProject.id}/cover.webp` : ''"
+                :alt="activeProject ? `${altLabel} ${activeProject.title}` : ''"
+                ref="newImg"
+                class="absolute"
+            />
+            <img 
+                v-show="previousProject"
+                :src="previousProject ? `/media/img/projects/${previousProject.id}/cover.webp` : ''"
+                :alt="previousProject ? `${altLabel} ${previousProject.title}` : ''"
+                ref="currentImg"
+                class="absolute"
+            />
         </figure>
     </article>
 </template>
