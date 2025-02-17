@@ -13,6 +13,7 @@
 
 <script setup>
 useHead({
+    title: "Emeric Soquet - Développeur front-end",
     bodyAttrs: {
         class: 'home-page'
     }
